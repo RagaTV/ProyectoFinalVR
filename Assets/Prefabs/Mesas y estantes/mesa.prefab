@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5366857104410245927}
   - component: {fileID: 2624605109216438457}
   - component: {fileID: 8620584353872958555}
+  - component: {fileID: 2242505328704069417}
   m_Layer: 0
   m_Name: mesa
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8460768549411785591}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 120, y: 129.52522, z: 182.448}
+  m_LocalScale: {x: 332.37805, y: 246.00766, z: 346.52402}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2242505328704069417
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460768549411785591}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010184791, y: 0.004601058, z: 0.0031499835}
+  m_Center: {x: 0, y: 0, z: 0.0015749915}
