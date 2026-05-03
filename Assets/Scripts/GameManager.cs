@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     [Header("Configuración de Rendimiento")]
     [SerializeField] private int targetFrameRate = 72;
     [SerializeField] private bool disableVSync = true;
-
     void Awake()
     {
         // Implementación de Singleton simple
@@ -32,13 +31,13 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = targetFrameRate;
 
         // 2. Control de VSync
-        // 0 desactiva, 1 activa. Para que el targetFrameRate funcione, 
+        // 0 desactiva, 1 activa. 
+        // Para que el targetFrameRate funcione, 
         // el VSync debe estar en 0.
         if (disableVSync)
         {
             QualitySettings.vSyncCount = 0;
         }
-
         Debug.Log($"Configuración aplicada: {targetFrameRate} FPS.");
     }
 }
