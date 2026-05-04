@@ -2446,6 +2446,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d040534a469e14b82c031b697638ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  todasLasRecetas:
+  - {fileID: 11400000, guid: e9272f05a9cf240418e32677d5661b7e, type: 2}
+  - {fileID: 11400000, guid: ae5bb20b60ed55542853b9fe8adcb6ab, type: 2}
+  - {fileID: 11400000, guid: 498dbe426da03e1439cb98cf63cf2f6d, type: 2}
+  - {fileID: 11400000, guid: b673d1c3c7ec2d349b85e7ff1e7d3e3a, type: 2}
+  - {fileID: 11400000, guid: dba0bd3ee72093f41814347d2c640a6e, type: 2}
+  - {fileID: 11400000, guid: fd711f5966ae5a043a1bd327b578308b, type: 2}
+  - {fileID: 11400000, guid: bbf1cd5b5528f3447ae07be63a51e861, type: 2}
+  - {fileID: 11400000, guid: b8daea2fbe6cdb445aad00f452657871, type: 2}
+  - {fileID: 11400000, guid: 42dd01145f46ed9418db5a1f881b6ede, type: 2}
+  - {fileID: 11400000, guid: 2bd28cd35aa58e247b241f0ce837bf79, type: 2}
+  - {fileID: 11400000, guid: 5bb4967f323c6d346b8c8fcc3f06737d, type: 2}
+  - {fileID: 11400000, guid: 7d26e7471b1850b49a4844f52e002ac2, type: 2}
+  - {fileID: 11400000, guid: 6a35cf1d4b79ffa4a9bf918f9230fba7, type: 2}
+  - {fileID: 11400000, guid: 15e8768674de41e44a122671a82268d3, type: 2}
+  - {fileID: 11400000, guid: 7e052e1fa6456eb48bd3812b35c5bc99, type: 2}
+  recetaObjetivoActual: {fileID: 11400000, guid: 42dd01145f46ed9418db5a1f881b6ede, type: 2}
   targetFrameRate: 72
   disableVSync: 1
 --- !u!4 &387162568
@@ -5554,6 +5571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea247bbaf935ff43912728042b0f597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "ingredientesEnElL\xEDquido": []
+  liquidoRenderer: {fileID: 1706072113}
+  modeloCaldero: {fileID: 1125209362}
 --- !u!135 &1174674677
 SphereCollider:
   m_ObjectHideFlags: 0
