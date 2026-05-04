@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataCristalMeditacion
+  m_EditorClassIdentifier: 
+  nombrePocion: "Cristal de Meditaci\xF3n"
+  colorFinal: {r: 0.9019608, g: 0.9019608, b: 0.98039216, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: f6f4ea5ff8e568c4fa11a1eb95b68f35, type: 2}
+  - {fileID: 11400000, guid: 597a0af61934138458f5e76ac766c013, type: 2}
+  - {fileID: 11400000, guid: d309c5bf37cc6db46940a0b3b7f930d5, type: 2}
+  descripcionClara: Amatista, Cristales y Verbena
+  descripcionAmbigua: Piedra violeta, piedra clara y hierba de los altares
+  descripcionConfusa: "Limpia el esp\xEDritu con la dualidad del cuarzo y el susurro
+    verde"

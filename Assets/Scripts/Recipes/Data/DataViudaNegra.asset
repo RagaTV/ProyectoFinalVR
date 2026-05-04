@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataViudaNegra
+  m_EditorClassIdentifier: 
+  nombrePocion: Veneno de la Viuda Negra
+  colorFinal: {r: 0.18039216, g: 0, b: 0.30980393, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: b5a45b2446b99bd4e957f08c4b673af3, type: 2}
+  - {fileID: 11400000, guid: 5af919fb099857449a3623171437dd07, type: 2}
+  - {fileID: 11400000, guid: 5d007d1ac7c305341bee9072259b167a, type: 2}
+  - {fileID: 11400000, guid: eb880b852fdef86488624374dd618081, type: 2}
+  descripcionClara: "Rana Venenosa, Rosa, Diente Tibur\xF3n y Hongo Alucin\xF3geno"
+  descripcionAmbigua: Muerte verde, belleza espinosa, colmillo afilado y visiones
+  descripcionConfusa: "La trampa perfecta: una piel que mata, un aroma dulce, un
+    mordisco eterno y un sue\xF1o sin fin"

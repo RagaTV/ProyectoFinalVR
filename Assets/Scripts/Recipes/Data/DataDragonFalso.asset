@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataDragonFalso
+  m_EditorClassIdentifier: 
+  nombrePocion: "Fuego de Drag\xF3n Falso"
+  colorFinal: {r: 1, g: 0.27058825, b: 0, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: 9d3f9ef6ce6850a4c9b03e90915dd63d, type: 2}
+  - {fileID: 11400000, guid: 00d22ec1f2bb55c449b2d3c35299b9b2, type: 2}
+  - {fileID: 11400000, guid: f5ca6dec67729b7498da326c562f2193, type: 2}
+  - {fileID: 11400000, guid: 597a0af61934138458f5e76ac766c013, type: 2}
+  descripcionClara: "Hongo Rojo, Cuerno Toro, Cal\xE9ndula y Cristales"
+  descripcionAmbigua: Seta de fuego, fuerza bruta, flor solar y transparencia
+  descripcionConfusa: Crea la llama con la mancha roja y el sol, dale cuerpo de bestia
+    y claridad de vidrio
