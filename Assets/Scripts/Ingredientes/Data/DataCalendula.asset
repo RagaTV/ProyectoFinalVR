@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: "Cal\xE9ndula Solar"
   tipo: 0
   colorPrincipal: {r: 0.69411767, g: 0.1764706, b: 0.11764707, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: 2926524264766334148, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: "Flor que solo abre sus p\xE9talos con el primer rayo
     de sol. Esencial para pociones de calor"
   etiquetasClave: Sol, Naranja, Fuego suave, Amanecer

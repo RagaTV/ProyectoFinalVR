@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: Amatista Real
   tipo: 2
   colorPrincipal: {r: 0.5176471, g: 0.2901961, b: 0.7058824, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: 8926832349400463389, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: Un cristal imbuido con la esencia de la nobleza. Su brillo
     violeta calma la mente
   etiquetasClave: "Violeta, Gema, Joya, P\xFArpura"

@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: Diente de Mar
   tipo: 3
   colorPrincipal: {r: 0.6627451, g: 0.64705884, b: 0.6431373, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: 8975837374384318773, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: "El arma blanca de los abismos. Corta la magia tan f\xE1cil
     como corta la carne"
   etiquetasClave: "Mordisco, Predador, Oc\xE9ano, Colmillo"

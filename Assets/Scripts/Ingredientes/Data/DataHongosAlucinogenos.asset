@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: "Seta del Sue\xF1o"
   tipo: 1
   colorPrincipal: {r: 0.10196079, g: 0.43529415, b: 0.39607847, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: 3308763577773233794, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: "Un hongo de manchas extra\xF1as. Aquel que lo consume
     ve mundos que no existen"
   etiquetasClave: "Visi\xF3n, Locura, Mente, Velo"

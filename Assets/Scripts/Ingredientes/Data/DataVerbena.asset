@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: Hierba Sagrada
   tipo: 0
   colorPrincipal: {r: 0.83921576, g: 0.34117648, b: 0.7843138, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: 7579554082683444588, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: "Utilizada por sacerdotes para limpiar templos. Su aroma
     aleja los malos esp\xEDritus"
   etiquetasClave: Altar, Paz, Fe, Verde

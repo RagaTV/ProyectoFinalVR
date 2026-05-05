@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: Rosa Espinosa
   tipo: 0
   colorPrincipal: {r: 0.60784316, g: 0.14117648, b: 0.14509805, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: -4735517352586821549, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: "Representa la dualidad: la belleza del p\xE9talo y el
     dolor de la espina"
   etiquetasClave: Amor, Belleza, Aroma, Punzante

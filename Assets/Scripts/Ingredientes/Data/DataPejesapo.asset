@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: Luz Abisal
   tipo: 4
   colorPrincipal: {r: 0.23137257, g: 0.14901961, b: 0.15686275, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: 5409651787366232067, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: Un pez que lleva su propia linterna. Se usa para pociones
     que permiten ver en lo oscuro
   etiquetasClave: "Profundidades, Gu\xEDa, Ciego, Abismo"

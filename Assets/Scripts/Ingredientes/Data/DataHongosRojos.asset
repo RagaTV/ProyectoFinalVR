@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: Fuego del Bosque
   tipo: 1
   colorPrincipal: {r: 0.78823537, g: 0.227451, b: 0.19607845, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: -4856084677907570828, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: "Altamente reactivo. Su color rojo intenso simboliza
     la pasi\xF3n y el peligro del fuego"
   etiquetasClave: "Rojo, Sangre, Mancha, Carmes\xED"

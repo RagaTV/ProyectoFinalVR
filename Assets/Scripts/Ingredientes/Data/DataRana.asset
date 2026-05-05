@@ -15,7 +15,7 @@ MonoBehaviour:
   nombreIngrediente: Salto de Lodo
   tipo: 4
   colorPrincipal: {r: 0.7568628, g: 0.90196085, b: 0.65882355, a: 1}
-  iconoIngrediente: {fileID: 0}
+  iconoIngrediente: {fileID: -7993697142126042320, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
   descripcionParaElJugador: Una criatura simple que vive entre dos mundos. Aporta
     agilidad a cualquier brebaje
   etiquetasClave: Anfibio, Pantano, Impulso, Humedad
