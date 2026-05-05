@@ -12,6 +12,12 @@ public class BoardController : MonoBehaviour
 
     private int clientesAtendidosHoy = 0;
 
+    void Start()
+    {
+        // Esto llamará a la función automáticamente al empezar
+        AsignarNuevaMision();
+    }
+
     public void AsignarNuevaMision()
     {
         clientesAtendidosHoy++;

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataMargarita
   m_EditorClassIdentifier: 
-  nombreIngrediente: Margarita
+  nombreIngrediente: Margarita Blanca
   tipo: 0
   colorPrincipal: {r: 1, g: 1, b: 1, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: "La flor m\xE1s com\xFAn, pero la m\xE1s pura. Sirve
+    como base para estabilizar venenos"
+  etiquetasClave: Inocencia, Prado, Pureza, Simple

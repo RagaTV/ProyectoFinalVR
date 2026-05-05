@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataPejesapo
   m_EditorClassIdentifier: 
-  nombreIngrediente: Pejesapo
+  nombreIngrediente: Luz Abisal
   tipo: 4
   colorPrincipal: {r: 0.23137257, g: 0.14901961, b: 0.15686275, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: Un pez que lleva su propia linterna. Se usa para pociones
+    que permiten ver en lo oscuro
+  etiquetasClave: "Profundidades, Gu\xEDa, Ciego, Abismo"

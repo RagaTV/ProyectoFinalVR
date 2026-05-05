@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataRosa
   m_EditorClassIdentifier: 
-  nombreIngrediente: Rosa
+  nombreIngrediente: Rosa Espinosa
   tipo: 0
   colorPrincipal: {r: 0.60784316, g: 0.14117648, b: 0.14509805, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: "Representa la dualidad: la belleza del p\xE9talo y el
+    dolor de la espina"
+  etiquetasClave: Amor, Belleza, Aroma, Punzante

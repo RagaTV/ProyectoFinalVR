@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataEsqueletoPescado
   m_EditorClassIdentifier: 
-  nombreIngrediente: EsqueletoPescado
+  nombreIngrediente: Restos de Marea
   tipo: 3
   colorPrincipal: {r: 0.36862746, g: 0.34509805, b: 0.30588236, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: "Lo que queda cuando la vida abandona el oc\xE9ano. Un
+    conector con el mundo de los muertos"
+  etiquetasClave: Huesos, Muerte blanca, Sal, Antiguo

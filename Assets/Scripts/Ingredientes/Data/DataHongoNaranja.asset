@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataHongoNaranja
   m_EditorClassIdentifier: 
-  nombreIngrediente: HongoNaranja
+  nombreIngrediente: Hongo de Corteza
   tipo: 1
   colorPrincipal: {r: 0.9490197, g: 0.4901961, b: 0.3647059, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: "Crece en los \xE1rboles ca\xEDdos. Su color advierte
+    que est\xE1 absorbiendo la energ\xEDa del bosque"
+  etiquetasClave: "Brillo, Madera, Putrefacci\xF3n, Naranja"

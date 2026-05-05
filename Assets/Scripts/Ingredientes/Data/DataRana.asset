@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataRana
   m_EditorClassIdentifier: 
-  nombreIngrediente: Rana
+  nombreIngrediente: Salto de Lodo
   tipo: 4
   colorPrincipal: {r: 0.7568628, g: 0.90196085, b: 0.65882355, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: Una criatura simple que vive entre dos mundos. Aporta
+    agilidad a cualquier brebaje
+  etiquetasClave: Anfibio, Pantano, Impulso, Humedad

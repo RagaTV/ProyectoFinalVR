@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataRanaVenenosa
   m_EditorClassIdentifier: 
-  nombreIngrediente: RanaVenenosa
+  nombreIngrediente: Muerte Esmeralda
   tipo: 4
   colorPrincipal: {r: 0.49411768, g: 0.19215688, b: 0.11764707, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: "Su piel brilla con un verde hermoso pero mortal. Un
+    solo toque detiene el coraz\xF3n"
+  etiquetasClave: Letal, Verde, Sudor, Veneno

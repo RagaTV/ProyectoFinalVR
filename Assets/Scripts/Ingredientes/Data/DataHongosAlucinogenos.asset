@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataHongosAlucinogenos
   m_EditorClassIdentifier: 
-  nombreIngrediente: HongosAlucinogenos
+  nombreIngrediente: "Seta del Sue\xF1o"
   tipo: 1
   colorPrincipal: {r: 0.10196079, g: 0.43529415, b: 0.39607847, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: "Un hongo de manchas extra\xF1as. Aquel que lo consume
+    ve mundos que no existen"
+  etiquetasClave: "Visi\xF3n, Locura, Mente, Velo"

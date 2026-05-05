@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataAmatista
   m_EditorClassIdentifier: 
-  nombreIngrediente: Amatista
+  nombreIngrediente: Amatista Real
   tipo: 2
   colorPrincipal: {r: 0.5176471, g: 0.2901961, b: 0.7058824, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: Un cristal imbuido con la esencia de la nobleza. Su brillo
+    violeta calma la mente
+  etiquetasClave: "Violeta, Gema, Joya, P\xFArpura"

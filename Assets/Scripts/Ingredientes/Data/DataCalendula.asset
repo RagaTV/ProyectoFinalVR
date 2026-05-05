@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataCalendula
   m_EditorClassIdentifier: 
-  nombreIngrediente: Calendula
+  nombreIngrediente: "Cal\xE9ndula Solar"
   tipo: 0
   colorPrincipal: {r: 0.69411767, g: 0.1764706, b: 0.11764707, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: "Flor que solo abre sus p\xE9talos con el primer rayo
+    de sol. Esencial para pociones de calor"
+  etiquetasClave: Sol, Naranja, Fuego suave, Amanecer

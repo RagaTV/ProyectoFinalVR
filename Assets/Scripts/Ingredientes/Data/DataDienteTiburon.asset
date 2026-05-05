@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataDienteTiburon
   m_EditorClassIdentifier: 
-  nombreIngrediente: DienteTiburon
+  nombreIngrediente: Diente de Mar
   tipo: 3
   colorPrincipal: {r: 0.6627451, g: 0.64705884, b: 0.6431373, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: "El arma blanca de los abismos. Corta la magia tan f\xE1cil
+    como corta la carne"
+  etiquetasClave: "Mordisco, Predador, Oc\xE9ano, Colmillo"

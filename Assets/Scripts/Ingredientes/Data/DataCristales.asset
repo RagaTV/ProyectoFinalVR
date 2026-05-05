@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
   m_Name: DataCristales
   m_EditorClassIdentifier: 
-  nombreIngrediente: Cristales
+  nombreIngrediente: Cristal de Roca
   tipo: 2
   colorPrincipal: {r: 0.6509804, g: 0.21176472, b: 0.5372549, a: 1}
+  iconoIngrediente: {fileID: 0}
+  descripcionParaElJugador: Tierra pura que ha olvidado su color. Se usa para purificar
+    mezclas y ver la verdad
+  etiquetasClave: Claridad, Transparencia, Vidrio, Tierra
