@@ -41,6 +41,7 @@ public class Cauldron : MonoBehaviour
     IEnumerator EfectoDisolver(GameObject obj, bool exito)
     {
         // 1. Congelar el objeto en el líquido
+        yield return new WaitForSeconds(0.15f);
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb != null) { rb.isKinematic = true; }
         obj.GetComponent<Collider>().enabled = false;
