@@ -66,8 +66,6 @@ public class BottleFiller : MonoBehaviour
         Debug.Log("Botella transportada por código.");
 
         ResetearCaldero();
-
-        FindObjectOfType<BoardController>().AsignarNuevaMision();
     }
 
     void ResetearCaldero()
