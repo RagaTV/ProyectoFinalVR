@@ -25,7 +25,7 @@ public class BoardController : MonoBehaviour
         RecipeData recetaElegida = recetas[Random.Range(0, recetas.Count)];
         int dificultadCalculada = recetaElegida.ingredientesRequeridos.Count;
         GameManager.Instance.recetaObjetivoActual = recetaElegida;
-        textoNombre.text = "Receta: ???"; 
+        textoNombre.text = "Receta: " + recetaElegida.nombrePocion;
 
         textoDescripcion.text = elegirDescripcion(recetaElegida);
 

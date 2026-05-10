@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 86866221}
   - component: {fileID: 86866223}
   - component: {fileID: 86866222}
+  - component: {fileID: 86866224}
   m_Layer: 0
   m_Name: Botella2_socket (1)
   m_TagString: Untagged
@@ -276,11 +277,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86866220}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.537, y: -0.755, z: -3.449}
-  m_LocalScale: {x: 280, y: 280, z: 280}
+  m_LocalPosition: {x: 0.008100192, y: 0.02271454, z: 0.004117529}
+  m_LocalScale: {x: 93.333336, y: 93.33333, z: 70}
   m_Children: []
-  m_Father: {fileID: 539164318}
-  m_RootOrder: 19
+  m_Father: {fileID: 1485492106}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!65 &86866222
 BoxCollider:
@@ -326,7 +327,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 86866224}
+        m_TargetAssemblyTypeName: BottleFiller, Assembly-CSharp
+        m_MethodName: AlPonerBotella
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -347,9 +360,24 @@ MonoBehaviour:
   m_ShowInteractableHoverMeshes: 1
   m_InteractableHoverMeshMaterial: {fileID: 0}
   m_InteractableCantHoverMeshMaterial: {fileID: 0}
-  m_SocketActive: 1
+  m_SocketActive: 0
   m_InteractableHoverScale: 1
   m_RecycleDelayTime: 1
+--- !u!114 &86866224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86866220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ecc21115172f8479acabbfd29868e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  socket: {fileID: 86866223}
+  liquidoCaldero: {fileID: 1706072113}
+  colorAguaOriginal: {r: 0.2509804, g: 0.30980393, b: 0.41176474, a: 0.5}
 --- !u!1 &91751147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,8 +2466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 50}
+  m_AnchoredPosition: {x: 0, y: 8}
+  m_SizeDelta: {x: 110, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296743807
 MonoBehaviour:
@@ -2491,11 +2519,11 @@ MonoBehaviour:
   m_fontSize: 10
   m_fontSizeBase: 10
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 6
+  m_fontSizeMax: 10
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3364,7 +3392,6 @@ Transform:
   - {fileID: 1084112957}
   - {fileID: 1781234509}
   - {fileID: 896707531}
-  - {fileID: 86866221}
   m_Father: {fileID: 869620607}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8910,6 +8937,11 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!4 &1485492106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2501188712614322055, guid: 9ba1fe81802ec3e4982e04984b3cfc04, type: 3}
+  m_PrefabInstance: {fileID: 1329195958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1506890395
 GameObject:
   m_ObjectHideFlags: 0

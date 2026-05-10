@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
 
     private void VerificarRecetaCompletada(List<IngredientData> listaCaldero, IngredientData ultimoIngrediente)
     {
-        // Creamos una copia de la lista actual + el último que acaba de caer para la comparación
         List<IngredientData> listaPrueba = new List<IngredientData>(listaCaldero);
         listaPrueba.Add(ultimoIngrediente);
 
@@ -76,18 +75,24 @@ public class GameManager : MonoBehaviour
 
         if (requeridos.SequenceEqual(actuales))
         {
-            // LOG DE VICTORIA: Con el color final de la poción
             string colorHex = ColorUtility.ToHtmlStringRGB(recetaObjetivoActual.colorFinal);
-            Debug.Log($"<b><color=#{colorHex}>[SISTEMA]</color></b> ¡POCIÓN FINALIZADA! Has creado una <b>{recetaObjetivoActual.nombrePocion}</b> con éxito.");
-        }
+            Debug.Log($"<b><color=#{colorHex}>[SISTEMA]</color></b> ¡POCIÓN FINALIZADA! Has creado <b>{recetaObjetivoActual.nombrePocion}</b>.");
 
-        if (requeridos.SequenceEqual(actuales))
-        {
-            string colorHex = ColorUtility.ToHtmlStringRGB(recetaObjetivoActual.colorFinal);
-            Debug.Log($"<b><color=#{colorHex}>[SISTEMA]</color></b> ¡POCIÓN FINALIZADA! Has creado una <b>{recetaObjetivoActual.nombrePocion}</b> con éxito.");
+            BottleFiller filler = FindObjectOfType<BottleFiller>();
+            if (filler != null) 
+            {
+                filler.HabilitarLlenado();
+            }
+            else 
+            {
+                Debug.LogError("No se encontró el script BottleFiller en la escena.");
+            }
 
-            // Buscamos el caldero en la escena y le mandamos el color
-            FindObjectOfType<Cauldron>().CambiarColorFinal(recetaObjetivoActual.colorFinal);
+            Cauldron caldero = FindObjectOfType<Cauldron>();
+            if (caldero != null)
+            {
+                caldero.CambiarColorFinal(recetaObjetivoActual.colorFinal);
+            }
         }
     }
 }
