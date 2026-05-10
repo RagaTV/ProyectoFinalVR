@@ -57,10 +57,7 @@ public class BottleFiller : MonoBehaviour
             socketEntrega.socketActive = true;
             socketEntrega.interactionManager.SelectEnter(socketEntrega, interactable);
             XRGrabInteractable grab = botella.GetComponent<XRGrabInteractable>();
-            if (grab != null)
-            {
-                grab.enabled = false; // El jugador ya no puede tomarla con la mano
-            }
+
         }
 
         Debug.Log("Botella transportada por código.");
