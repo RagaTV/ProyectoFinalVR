@@ -1,7 +1,8 @@
 using UnityEngine;
-using TMPro; // Asegúrate de tener instalado TextMeshPro
+using TMPro;
 using System.Collections;
 
+// Esta clase DEBE estar fuera de la clase principal para que Unity la reconozca globalmente
 [System.Serializable]
 public class DialogoGato {
     public string categoria; 
@@ -10,7 +11,6 @@ public class DialogoGato {
 }
 
 public class CatDialogManager : MonoBehaviour {
-    // Estas variables DEBEN ser 'public' para que aparezcan en el Inspector
     [Header("Configuracion Visual")]
     public TextMeshProUGUI textoDialogo; 
     public GameObject contenedorDialogo; 
@@ -18,14 +18,16 @@ public class CatDialogManager : MonoBehaviour {
     [Header("Base de Datos de Frases")]
     public DialogoGato[] baseDeDatos;
 
-    [Header("Ajustes")]
-    public float tiempoVisible = 4.5f;
+    [Header("Ajustes de Efecto")]
+    public float velocidadEscritura = 0.05f; 
+    public float tiempoVisibleDespuesDeEscribir = 2.5f;
 
     void Start() {
         if(contenedorDialogo != null) {
             contenedorDialogo.SetActive(false);
             DecirFrase("Inicio");
         }
+        // Lanza una frase aleatoria cada 60 segundos aproximadamente
         InvokeRepeating("LanzarDialogoAleatorio", 20f, 60f);
     }
 
@@ -48,10 +50,18 @@ public class CatDialogManager : MonoBehaviour {
         }
     }
 
-    IEnumerator MostrarTexto(string texto) {
-        textoDialogo.text = texto;
+    IEnumerator MostrarTexto(string fraseCompleta) {
+        textoDialogo.text = ""; // Limpia el texto anterior
         contenedorDialogo.SetActive(true);
-        yield return new WaitForSeconds(tiempoVisible);
+
+        // Efecto letra por letra
+        foreach (char letra in fraseCompleta.ToCharArray()) {
+            textoDialogo.text += letra;
+            yield return new WaitForSeconds(velocidadEscritura);
+        }
+
+        // Espera antes de cerrar el bocadillo
+        yield return new WaitForSeconds(tiempoVisibleDespuesDeEscribir);
         contenedorDialogo.SetActive(false);
     }
 }
