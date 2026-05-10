@@ -24,20 +24,15 @@ public class BoardController : MonoBehaviour
         var recetas = GameManager.Instance.todasLasRecetas;
         RecipeData recetaElegida = recetas[Random.Range(0, recetas.Count)];
         int dificultadCalculada = recetaElegida.ingredientesRequeridos.Count;
-
-        // 1. Lógica del nombre (¿Ya está hecha o comprada?)
-        // Por ahora lo ponemos con ??? como dijiste
+        GameManager.Instance.recetaObjetivoActual = recetaElegida;
         textoNombre.text = "Receta: ???"; 
 
-        // 2. Lógica de descripción según dificultad (usando tus campos del ScriptableObject)
         textoDescripcion.text = elegirDescripcion(recetaElegida);
 
-        // 3. Mostrar recompensa y cliente
         int monedas = calcularMonedas(dificultadCalculada);
         textoRecompensa.text = "+" + monedas;
         textoNumCliente.text = "Cliente: #" + clientesAtendidosHoy.ToString("00");
 
-        // 4. Actualizar estrellas
         actualizarEstrellas(dificultadCalculada);
     }
 
