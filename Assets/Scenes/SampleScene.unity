@@ -3378,6 +3378,7 @@ MonoBehaviour:
   disableVSync: 1
   monedaPrefab: {fileID: 5969444062084274703, guid: 9920c7ae50c56234585c150a863dbc4f, type: 3}
   puntoAparicionPlato: {fileID: 1476225400}
+  misionEnProgreso: 0
   dineroTotal: 0
   monedasEnEscena: []
 --- !u!4 &387162568
@@ -4636,6 +4637,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1461304994638716399, guid: 71b365fc2f73143489753232748386d3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fcd1fc49397d3aa47aa2d5ee5ee2c257, type: 2}
     - target: {fileID: 919132149155446097, guid: 71b365fc2f73143489753232748386d3, type: 3}
       propertyPath: m_Name
       value: SolicitarReceta
