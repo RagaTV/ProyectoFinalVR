@@ -38,15 +38,19 @@ public class BoardController : MonoBehaviour
 
     public void SolicitarNuevaMision() 
     {
-        // Verificamos en el GameManager si el plato tiene monedas
-        if (GameManager.Instance.HayMonedasPendientes())
+        if (GameManager.Instance.misionEnProgreso)
         {
-            Debug.Log("<color=orange>[BOARD]</color> ¡Recoge las monedas del plato antes de aceptar un nuevo encargo!");
-            // Opcional: Aquí puedes activar un mensaje visual en la pizarra que diga "RECOGE TU PAGO"
+            Debug.Log("<color=red>[BOARD]</color> Ya tienes una receta activa. ¡Termínala primero!");
             return;
         }
 
-        // Si el plato está limpio, procedemos
+        if (GameManager.Instance.HayMonedasPendientes())
+        {
+            Debug.Log("<color=orange>[BOARD]</color> Recoge tu pago antes de aceptar otro cliente.");
+            return;
+        }
+
+        GameManager.Instance.misionEnProgreso = true; 
         AsignarNuevaMision();
     }
 

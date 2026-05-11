@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool disableVSync = true;
     public GameObject monedaPrefab;
     public Transform puntoAparicionPlato;
+    public bool misionEnProgreso = false;
     void Awake()
     {
         if (Instance == null)
@@ -28,6 +29,22 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    void Update()
+    {
+        foreach (var moneda in monedasEnEscena.ToList())
+        {
+            if (moneda != null && moneda.transform.position.y < 0.5f)
+            {
+                Coin scriptMoneda = moneda.GetComponent<Coin>();
+                if(scriptMoneda != null) SumarDinero(scriptMoneda.valorMoneda);
+
+                monedasEnEscena.Remove(moneda);
+                Destroy(moneda);
+                Debug.Log("<color=green>[ECONOMÍA]</color> Moneda recuperada automáticamente del suelo.");
+            }
         }
     }
 

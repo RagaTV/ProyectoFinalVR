@@ -23,8 +23,7 @@ public class DeliveryPoint : MonoBehaviour
             if (efectoEntrega != null) Instantiate(efectoEntrega, botella.transform.position, Quaternion.identity);
             
             Destroy(botella);
-
-                // Instanciamos las monedas a través del GameManager
+            GameManager.Instance.misionEnProgreso = false;
             int recompensa = GameManager.Instance.recetaObjetivoActual.recompensaMonedas;
             GameManager.Instance.StartCoroutine(GameManager.Instance.SpawnMonedasConIntervalo(recompensa));
 
