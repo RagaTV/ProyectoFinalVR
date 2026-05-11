@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; 
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     [Header("Configuración de Rendimiento")]
     [SerializeField] private int targetFrameRate = 72;
     [SerializeField] private bool disableVSync = true;
+    public GameObject monedaPrefab;
+    public Transform puntoAparicionPlato;
     void Awake()
     {
         if (Instance == null)
@@ -94,5 +97,53 @@ public class GameManager : MonoBehaviour
                 caldero.CambiarColorFinal(recetaObjetivoActual.colorFinal);
             }
         }
+    }
+
+
+    [Header("Economía e Inventario")]
+    public int dineroTotal = 0;
+    public List<GameObject> monedasEnEscena = new List<GameObject>();
+
+    // Reemplaza tu función EntregarPremio por esta Corrutina
+    public IEnumerator SpawnMonedasConIntervalo(int cantidad)
+    {
+        for (int i = 0; i < cantidad; i++)
+        {
+            Vector3 desfase = new Vector3(Random.Range(-0.05f, 0.05f), 0.02f, Random.Range(-0.05f, 0.05f));
+            GameObject nuevaMoneda = Instantiate(monedaPrefab, puntoAparicionPlato.position + desfase, Quaternion.identity);
+            
+            // La añadimos a nuestra lista de control
+            monedasEnEscena.Add(nuevaMoneda);
+            
+            // Esperamos 0.1 segundos entre cada moneda para que los colliders no exploten
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    public void NotificarMonedaRecogida(GameObject moneda)
+    {
+        if (monedasEnEscena.Contains(moneda))
+        {
+            monedasEnEscena.Remove(moneda);
+        }
+    }
+
+    // Esta es la función que usaremos para bloquear el progreso
+    public bool HayMonedasPendientes()
+    {
+        Debug.Log($"Monedas restantes en lista: {monedasEnEscena.Count}"); // <-- Añade esto
+        return monedasEnEscena.Count > 0;
+    }
+
+    public void SumarDinero(int cantidad)
+    {
+        dineroTotal += cantidad;
+        Debug.Log($"<b><color=#FFD700>[BILLETERA]</color></b> +{cantidad}. Total: {dineroTotal}");
+    }
+
+    public void restarDinero(int cantidad)
+    {
+        dineroTotal -= cantidad;
+        Debug.Log($"<b><color=#FFD700>[BILLETERA]</color></b> -{cantidad}. Total: {dineroTotal}");
     }
 }

@@ -24,10 +24,12 @@ public class DeliveryPoint : MonoBehaviour
             
             Destroy(botella);
 
+                // Instanciamos las monedas a través del GameManager
+            int recompensa = GameManager.Instance.recetaObjetivoActual.recompensaMonedas;
+            GameManager.Instance.StartCoroutine(GameManager.Instance.SpawnMonedasConIntervalo(recompensa));
+
             fillerScript.socketEntrega.socketActive = false;
             
-            BoardController pizarra = FindObjectOfType<BoardController>();
-            if (pizarra != null) pizarra.AsignarNuevaMision();
 
         }
         else

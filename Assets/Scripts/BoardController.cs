@@ -14,8 +14,7 @@ public class BoardController : MonoBehaviour
 
     void Start()
     {
-        // Esto llamará a la función automáticamente al empezar
-        AsignarNuevaMision();
+        SolicitarNuevaMision();
     }
 
     public void AsignarNuevaMision()
@@ -30,10 +29,25 @@ public class BoardController : MonoBehaviour
         textoDescripcion.text = elegirDescripcion(recetaElegida);
 
         int monedas = calcularMonedas(dificultadCalculada);
+        recetaElegida.recompensaMonedas = monedas;
         textoRecompensa.text = "+" + monedas;
         textoNumCliente.text = "Cliente: #" + clientesAtendidosHoy.ToString("00");
 
         actualizarEstrellas(dificultadCalculada);
+    }
+
+    public void SolicitarNuevaMision() 
+    {
+        // Verificamos en el GameManager si el plato tiene monedas
+        if (GameManager.Instance.HayMonedasPendientes())
+        {
+            Debug.Log("<color=orange>[BOARD]</color> ¡Recoge las monedas del plato antes de aceptar un nuevo encargo!");
+            // Opcional: Aquí puedes activar un mensaje visual en la pizarra que diga "RECOGE TU PAGO"
+            return;
+        }
+
+        // Si el plato está limpio, procedemos
+        AsignarNuevaMision();
     }
 
     int calcularMonedas(int cantIngredientes) {

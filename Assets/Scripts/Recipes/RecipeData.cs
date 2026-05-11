@@ -22,4 +22,6 @@ public class RecipeData : ScriptableObject
     
     [TextArea(2, 3)] 
     public string descripcionConfusa;
+    [Header("Economía")]
+    public int recompensaMonedas = 1;
 }
