@@ -13,9 +13,15 @@ public class Cauldron : MonoBehaviour
 
     private bool estaTemblando = false;
 
+    void Start()
+    {
+        SFXManager.Instance.PlayCalderoLoop(transform.position, 0.5f);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Ingredient ingredienteCayo = other.GetComponent<Ingredient>();
+        SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.ingredienteAlCaldero, transform.position, 1f);
 
         if (ingredienteCayo != null && ingredienteCayo.data != null)
         {
@@ -26,11 +32,13 @@ public class Cauldron : MonoBehaviour
             if (esCorrecto)
             {
                 ingredientesEnElLíquido.Add(ingredienteCayo.data);
+                SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.aciertoReceta, transform.position, 1f);
                 StartCoroutine(EfectoDisolver(ingredienteCayo.gameObject, true));
             }
             else
             {
                 Debug.Log($"<b><color=#FF4500>[CALDERO]</color></b> Rechazando ingrediente incorrecto. Iniciando secuencia de temblor.");
+                SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.errorIngrediente, transform.position, 1f);
                 if (!estaTemblando) StartCoroutine(EfectoTemblor());
                 StartCoroutine(EfectoDisolver(ingredienteCayo.gameObject, false));
             }
@@ -58,8 +66,6 @@ public class Cauldron : MonoBehaviour
             yield return null;
         }
 
-        // 3. Si fue un ingrediente exitoso y completó la receta, el GameManager se encarga del color final
-        // (Por ahora el Destroy es suficiente)
         Destroy(obj);
     }
 
@@ -83,7 +89,14 @@ public class Cauldron : MonoBehaviour
         estaTemblando = false;
     }
 
-    // Dentro de Cauldron.cs
+    /*public void ExplotarCaldero()
+    {
+        // Sonido de explosión 3D justo en el caldero
+        SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.calderoExplota, transform.position, 0.8f);
+        
+        // Aquí continuaría tu código para ocultar el caldero o poner humo...
+    }*/
+
     public void CambiarColorFinal(Color nuevoColor)
     {
         if (liquidoRenderer != null)
