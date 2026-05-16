@@ -3466,6 +3466,65 @@ Transform:
   m_Father: {fileID: 1791629523}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &402427613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402427615}
+  - component: {fileID: 402427614}
+  m_Layer: 0
+  m_Name: SFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &402427614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402427613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99351945a3a358f4e94317c93457e1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSourcePrefab: {fileID: 0}
+  poolSize: 12
+  musicaInicio: {fileID: 8300000, guid: 24a1483c3aaaa55429d39e35fc959dca, type: 3}
+  musicaAmbiente: {fileID: 8300000, guid: b753084eeacab6d46bd2ea76c82a53ac, type: 3}
+  musicaGanar: {fileID: 8300000, guid: 90fb07ef0cdf06940a57a37e505a8484, type: 3}
+  musicaPerder: {fileID: 8300000, guid: 85ff2ddd869d3f24aa3a43e935d3655f, type: 3}
+  sonidoBotonUI: {fileID: 8300000, guid: efe335a2eceb7b040a20a0fce24ec779, type: 3}
+  ponerBotellaBandeja: {fileID: 8300000, guid: 9b78f5c4367d70247b8bea6dd2ba266e, type: 3}
+  ingredienteAlCaldero: {fileID: 8300000, guid: 042c64e3d59bac9488fbaecae7786283, type: 3}
+  calderoExplota: {fileID: 8300000, guid: ce143993ee43b1649808d826022536c0, type: 3}
+  calderoBurbujeoNormal: {fileID: 8300000, guid: 70609956cd235de44a9ac659ce20c6b1, type: 3}
+  agarrarObjeto: {fileID: 8300000, guid: 5b092d736107d2747a21ff03b0f1591a, type: 3}
+  aciertoReceta: {fileID: 8300000, guid: 4cd2ce722833c784ca3372c02254035b, type: 3}
+  errorIngrediente: {fileID: 8300000, guid: cdef806f313a4f84cbaea727732b0b5e, type: 3}
+  recibirMonedas: {fileID: 8300000, guid: af1d79f938a9df1448420ce75ba79c39, type: 3}
+  maullidoGato: {fileID: 8300000, guid: 3214df76e50ce1f418e69ea51ccbe363, type: 3}
+--- !u!4 &402427615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402427613}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &412253713
 GameObject:
   m_ObjectHideFlags: 0
