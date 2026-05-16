@@ -3,6 +3,7 @@ using UnityEngine;
 public class DayNightCycle : MonoBehaviour
 {
     [Header("Configuración de Tiempo")]
+    public bool jornadaActiva = false;
     public float segundosRealesPorDia = 600f; // Cuánto dura la jornada (ej. 2 min)
     [Header("Luces del Proyecto")]
     [SerializeField] private Light sunLight;          // Tu Directional Light
@@ -16,8 +17,18 @@ public class DayNightCycle : MonoBehaviour
     private float horaFin = 24f;    // 12 AM (Medianoche)
     private float tiempoTranscurrido;
 
+    void Start()
+    {
+        tiempoTranscurrido = 0f;
+        progresoJornada = 0f;
+        CalcularReloj();
+        ActualizarRotacionSol();
+        ActualizarLuces();
+    }
     void Update()
     {
+        if (!jornadaActiva) return;
+
         if (tiempoTranscurrido < segundosRealesPorDia)
         {
             tiempoTranscurrido += Time.deltaTime;
@@ -29,9 +40,16 @@ public class DayNightCycle : MonoBehaviour
         }
         else
         {
-            // Lógica de fin de día
             FinalizarJornada();
         }
+    }
+
+    public void IniciarNuevaJornada()
+    {
+        tiempoTranscurrido = 0f;
+        progresoJornada = 0f;
+        jornadaActiva = true;
+        Debug.Log("<color=cyan>[TIEMPO]</color> ¡La jornada del día " + diaActual + " ha comenzado!");
     }
 
     void CalcularReloj()
@@ -47,7 +65,6 @@ public class DayNightCycle : MonoBehaviour
 
     void ActualizarLuces()
     {
-        // Al final del día (cuando el sol baja), reducimos las intensidades
         if (progresoJornada > 0.8f) 
         {
             float tX = (progresoJornada - 0.8f) / 0.2f; // Normalizamos el último 20% del tiempo
@@ -87,8 +104,8 @@ public class DayNightCycle : MonoBehaviour
 
     void FinalizarJornada()
     {
+        jornadaActiva = false; // Detiene el reloj al terminar
         Debug.Log("Jornada terminada. Días completados: " + diaActual);
-        // Aquí podrías llamar a tu GameManager para mostrar la pantalla de victoria
     }
 
     public void SiguienteDia()

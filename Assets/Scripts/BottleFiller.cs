@@ -23,6 +23,7 @@ public class BottleFiller : MonoBehaviour
     public void AlPonerBotella(SelectEnterEventArgs args)
     {
         GameObject botella = args.interactableObject.transform.gameObject;
+        SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.ponerBotellaBandeja, transform.position, 1f);
         StartCoroutine(SecuenciaLlenado(botella));
     }
 

@@ -15,7 +15,7 @@ public class Cauldron : MonoBehaviour
 
     void Start()
     {
-        SFXManager.Instance.PlayCalderoLoop(transform.position, 0.5f);
+        SFXManager.Instance.PlayCalderoLoop(transform.position, 0.4f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,16 +45,13 @@ public class Cauldron : MonoBehaviour
         }
     }
 
-    // El booleano 'exito' sirve para decidir si cambiamos el color o no
     IEnumerator EfectoDisolver(GameObject obj, bool exito)
     {
-        // 1. Congelar el objeto en el líquido
         yield return new WaitForSeconds(0.15f);
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb != null) { rb.isKinematic = true; }
         obj.GetComponent<Collider>().enabled = false;
 
-        // 2. Encoger el objeto
         Vector3 escalaInicial = obj.transform.localScale;
         float duracion = 0.8f;
         float t = 0;
@@ -80,7 +77,6 @@ public class Cauldron : MonoBehaviour
         while (t < duracion)
         {
             t += Time.deltaTime;
-            // Movimiento aleatorio rápido para simular vibración
             modeloCaldero.localPosition = posOriginal + (Random.insideUnitSphere * fuerza);
             yield return null;
         }

@@ -9,16 +9,36 @@ public class BoardController : MonoBehaviour
     public TextMeshProUGUI textoRecompensa;
     public TextMeshProUGUI textoNumCliente;
     public GameObject[] estrellasDificultad; // 3 objetos de estrella
-
     private int clientesAtendidosHoy = 0;
-
+    [Header("Transform de Sonido")]
+    public GameObject objetoGato; 
     void Start()
     {
-        SolicitarNuevaMision();
+        LimpiarPizarra();
+    }
+
+    public void LimpiarPizarra()
+    {
+        textoNombre.text = "Esperando jornada...";
+        textoDescripcion.text = "Presiona el botón de Iniciar Día para recibir clientes.";
+        textoRecompensa.text = "+0";
+        textoNumCliente.text = "Cliente: #00";
+
+        for (int i = 0; i < estrellasDificultad.Length; i++)
+        {
+            if (estrellasDificultad[i] != null)
+                estrellasDificultad[i].SetActive(false);
+        }
+    }
+
+    public void ResetearContadorClientes()
+    {
+        clientesAtendidosHoy = 0;
     }
 
     public void AsignarNuevaMision()
     {
+        SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.maullidoGato, objetoGato.transform.position, 1f);
         clientesAtendidosHoy++;
         var recetas = GameManager.Instance.todasLasRecetas;
         RecipeData recetaElegida = recetas[Random.Range(0, recetas.Count)];

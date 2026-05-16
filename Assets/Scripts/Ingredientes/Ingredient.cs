@@ -9,7 +9,6 @@ public class Ingredient : MonoBehaviour
     
     [Header("Configuración de Prefabs")]
     public GameObject ingredientPrefab;
-
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     private bool hasRespawned = false; 
@@ -17,7 +16,6 @@ public class Ingredient : MonoBehaviour
 
     void Awake()
     {
-        // IMPORTANTE: Guardamos la posición solo si NO somos un clon recién movido
         initialPosition = transform.position;
         initialRotation = transform.rotation;
 
@@ -37,14 +35,16 @@ public class Ingredient : MonoBehaviour
 
     void OnGrab(SelectEnterEventArgs args)
     {
-        // LA MAGIA DE VR: Verificamos quién está agarrando el objeto
-        // Si es un Socket (el estante), abortamos y no hacemos nada
         if (args.interactorObject is XRSocketInteractor)
         {
             return; 
         }
 
-        // Si pasamos el filtro anterior, significa que fue tu mano (Direct o Ray Interactor)
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.agarrarObjeto, transform.position, 0.7f);
+        }
+
         if (!hasRespawned)
         {
             hasRespawned = true;
@@ -60,17 +60,14 @@ public class Ingredient : MonoBehaviour
         
         if (ingredientPrefab != null)
         {
-            // 3. Spawneamos el nuevo objeto en la posición del estante
             GameObject nuevo = Instantiate(ingredientPrefab, initialPosition, initialRotation);
             
-            // 4. Limpiamos el nombre para evitar (Clone)(Clone)
             nuevo.name = ingredientPrefab.name;
 
-            // 5. Nos aseguramos de que el nuevo objeto sea "virgen"
             Ingredient scriptNuevo = nuevo.GetComponent<Ingredient>();
             if(scriptNuevo != null)
             {
-                scriptNuevo.hasRespawned = false; // El nuevo sí puede spawnear cuando lo agarren
+                scriptNuevo.hasRespawned = false; 
             }
         }
     }

@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+    }
+
+    void Start()
+    {
+        SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaAmbiente, 0.75f, true);
     }
 
     void Update()
@@ -128,8 +134,8 @@ public class GameManager : MonoBehaviour
         {
             Vector3 desfase = new Vector3(Random.Range(-0.05f, 0.05f), 0.02f, Random.Range(-0.05f, 0.05f));
             GameObject nuevaMoneda = Instantiate(monedaPrefab, puntoAparicionPlato.position + desfase, Quaternion.identity);
-            
             // La añadimos a nuestra lista de control
+            SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.recibirMonedas, puntoAparicionPlato.position, 1f);
             monedasEnEscena.Add(nuevaMoneda);
             
             // Esperamos 0.1 segundos entre cada moneda para que los colliders no exploten
@@ -142,13 +148,13 @@ public class GameManager : MonoBehaviour
         if (monedasEnEscena.Contains(moneda))
         {
             monedasEnEscena.Remove(moneda);
+            SFXManager.Instance.PlaySFX(SFXManager.Instance.agarrarObjeto, 0.5f);
         }
     }
 
-    // Esta es la función que usaremos para bloquear el progreso
     public bool HayMonedasPendientes()
     {
-        Debug.Log($"Monedas restantes en lista: {monedasEnEscena.Count}"); // <-- Añade esto
+        Debug.Log($"Monedas restantes en lista: {monedasEnEscena.Count}"); 
         return monedasEnEscena.Count > 0;
     }
 
@@ -163,4 +169,12 @@ public class GameManager : MonoBehaviour
         dineroTotal -= cantidad;
         Debug.Log($"<b><color=#FFD700>[BILLETERA]</color></b> -{cantidad}. Total: {dineroTotal}");
     }
+
+    /*
+    // Si se acabó el tiempo y el jugador perdió el día:
+    SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaPerder, 0.6f);
+
+    // Si logró la meta del día con éxito:
+    SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaGanar, 0.6f);
+    */
 }
