@@ -112,7 +112,7 @@ public class DayNightCycle : MonoBehaviour
             SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaGanar, 0.6f);
         }
 
-        // Y después llamaremos al Fade a Negro y al Guardado de Progreso
+        StartCoroutine(GameManager.Instance.TransicionNuevoDia());
     }
 
     public void SiguienteDia()

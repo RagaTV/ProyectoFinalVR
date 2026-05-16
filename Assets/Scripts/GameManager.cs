@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections; 
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +20,10 @@ public class GameManager : MonoBehaviour
     public GameObject monedaPrefab;
     public Transform puntoAparicionPlato;
     public bool misionEnProgreso = false;
+    [Header("Transiciones de VR")]
+    public CanvasGroup fadeCanvasGroup; 
+    public TextMeshProUGUI textoFade;
+
     void Awake()
     {
         if (Instance == null)
@@ -50,6 +56,20 @@ public class GameManager : MonoBehaviour
 
     private void BuscarComponentesUI()
     {
+        // Buscamos el Canvas por el nombre exacto que le pusiste
+        GameObject canvasObj = GameObject.Find("CanvasFade");
+        if (canvasObj != null)
+        {
+            fadeCanvasGroup = canvasObj.GetComponent<CanvasGroup>();
+            textoFade = canvasObj.GetComponentInChildren<TextMeshProUGUI>(true);
+            
+            // Nos aseguramos de que empiece 100% invisible para poder jugar
+            if (fadeCanvasGroup != null)
+            {
+                fadeCanvasGroup.alpha = 0f;
+            }
+        }
+
         GameObject platoObj = GameObject.Find("SpawnPointCoin"); 
         if (platoObj != null)
         {
@@ -207,9 +227,96 @@ public class GameManager : MonoBehaviour
 
         if (SFXManager.Instance != null && SFXManager.Instance.musicaPerder != null)
         {
-            SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaPerder, 0.5f);
+            SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaPerder, 0.6f);
         }
 
-        // NOTA PARA EL FUTURO: Aquí es donde, en la Fase 3, llamaremos al Fade a Negro y al Guardado.
+        StartCoroutine(TransicionDerrota());
+    }
+
+    private IEnumerator TransicionDerrota()
+    {
+        
+        if (textoFade != null)
+        {
+            textoFade.text = "¡El caldero no soportó la mezcla!\nJornada arruinada...";
+            textoFade.color = new Color(1f, 0.4f, 0.4f); // Un tono rojizo para el error
+        }
+
+        float tiempoFade = 2f;
+        float t = 0;
+        
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.alpha = 0f; 
+            
+            while (t < tiempoFade)
+            {
+                t += Time.deltaTime;
+                fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t / tiempoFade);
+                yield return null;
+            }
+        }
+
+        yield return new WaitForSeconds(10f);
+
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.DetenerTodoElAudio();
+        }
+
+        Debug.Log("<color=orange>[SISTEMA]</color> Recargando día anterior. No se guardó el progreso.");
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public IEnumerator TransicionNuevoDia()
+    {
+        if (textoFade != null)
+        {
+            int monedasDeHoy = 0;
+            int diaTerminado = 1;
+
+            if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
+            {
+                monedasDeHoy = dineroTotal - SaveManager.Instance.datosActuales.monedasTotales;
+                diaTerminado = SaveManager.Instance.datosActuales.diaActual;
+            }
+
+            textoFade.text = $"Fin de Jornada: Día {diaTerminado}\nGanaste +{monedasDeHoy} monedas";
+            textoFade.color = Color.white; 
+        }
+
+        float tiempoFade = 2f;
+        float t = 0;
+        
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.alpha = 0f; 
+            while (t < tiempoFade)
+            {
+                t += Time.deltaTime;
+                fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t / tiempoFade);
+                yield return null;
+            }
+        }
+
+        yield return new WaitForSeconds(10f);
+
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.DetenerTodoElAudio();
+        }
+
+        if (SaveManager.Instance != null)
+        {
+            Debug.Log("<color=green>[SISTEMA]</color> Guardando progreso de la jornada...");
+            
+            SaveManager.Instance.datosActuales.monedasTotales = dineroTotal;
+            SaveManager.Instance.datosActuales.diaActual++; 
+            
+            SaveManager.Instance.GuardarProgreso(); 
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
