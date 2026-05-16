@@ -61,13 +61,30 @@ public class BoardController : MonoBehaviour
         if (GameManager.Instance.misionEnProgreso)
         {
             Debug.Log("<color=red>[BOARD]</color> Ya tienes una receta activa. ¡Termínala primero!");
+            if (SFXManager.Instance != null) {
+                SFXManager.Instance.PlaySFX(SFXManager.Instance.errorIngrediente, 0.5f);
+            }
             return;
         }
 
         if (GameManager.Instance.HayMonedasPendientes())
         {
             Debug.Log("<color=orange>[BOARD]</color> Recoge tu pago antes de aceptar otro cliente.");
+            if (SFXManager.Instance != null) {
+                SFXManager.Instance.PlaySFX(SFXManager.Instance.errorIngrediente, 0.5f);
+            }
             return;
+        }
+
+        if (GameManager.Instance != null && !GameManager.Instance.misionEnProgreso)
+        {
+            Debug.Log("<color=yellow>[INTERFAZ]</color> El local está cerrado. Inicia el día primero.");
+            
+            if (SFXManager.Instance != null) {
+                SFXManager.Instance.PlaySFX(SFXManager.Instance.errorIngrediente, 0.5f);
+            }
+            
+            return; 
         }
 
         GameManager.Instance.misionEnProgreso = true; 

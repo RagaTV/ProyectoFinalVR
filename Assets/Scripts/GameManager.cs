@@ -79,6 +79,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaAmbiente, 0.75f, true);
+
+        if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
+        {
+            dineroTotal = SaveManager.Instance.datosActuales.monedasTotales;
+            Debug.Log($"<color=green>[ECONOMÍA]</color> Billetera sincronizada con el guardado. Monedas iniciales: {dineroTotal}");
+        }
     }
 
     void Update()
@@ -315,6 +321,26 @@ public class GameManager : MonoBehaviour
             SaveManager.Instance.datosActuales.diaActual++; 
             
             SaveManager.Instance.GuardarProgreso(); 
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ReiniciarJornadaPorEmergencia()
+    {
+        Debug.Log("<color=yellow>[SISTEMA]</color> Botón de emergencia presionado. Abortando día actual...");
+
+        misionEnProgreso = false;
+
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.CargarProgreso(); 
+            dineroTotal = SaveManager.Instance.datosActuales.monedasTotales;
+        }
+
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.DetenerTodoElAudio();
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
