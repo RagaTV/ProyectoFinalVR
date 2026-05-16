@@ -29,6 +29,9 @@ public class Ingredient : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (grabInteractable != null && grabInteractable.isSelected) return;
+
+        // Verificamos si lo que acabamos de golpear tiene el Tag "Suelo"
         if (collision.gameObject.CompareTag("Suelo"))
         {
             if (rutinaDestruccion == null) 

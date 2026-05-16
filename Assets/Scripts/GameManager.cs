@@ -33,6 +33,29 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        BuscarComponentesUI();
+    }
+
+    private void BuscarComponentesUI()
+    {
+        GameObject platoObj = GameObject.Find("SpawnPointCoin"); 
+        if (platoObj != null)
+        {
+            puntoAparicionPlato = platoObj.transform;
+        }
+    }
     void Start()
     {
         SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaAmbiente, 0.75f, true);

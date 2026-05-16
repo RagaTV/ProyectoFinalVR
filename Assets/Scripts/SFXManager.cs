@@ -129,4 +129,16 @@ public class SFXManager : MonoBehaviour
         musicSource.loop = true;
         musicSource.Play();
     }
+
+    public void DetenerTodoElAudio()
+    {
+        foreach (AudioSource source in audioPool)
+        {
+            source.Stop();
+        }
+        if (calderoAmbientalSource.isPlaying)
+        {
+            calderoAmbientalSource.Stop();
+        }
+    }
 }
