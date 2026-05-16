@@ -45,11 +45,6 @@ public class SFXManager : MonoBehaviour
         InicializarPool();
     }
 
-    private void Start()
-    {
-        // Al arrancar, reproducimos la música de ambiente en loop 2D
-        PlayAmbientMusic(musicaAmbiente, 0.4f);
-    }
 
     private void InicializarPool()
     {
@@ -64,22 +59,34 @@ public class SFXManager : MonoBehaviour
         calderoAmbientalSource = Instantiate(audioSourcePrefab, transform);
     }
 
-    // FUNCIÓN 1: Sonido de Interfaz y Logros (2D)
-    public void PlaySFX(AudioClip clip, float volumen = 1f)
+    public void PlaySFX(AudioClip clip, float volumen = 1f, bool loop = false)
     {
         if (clip == null) return;
 
         AudioSource source = audioPool[currentPoolIndex];
         source.clip = clip;
         source.volume = volumen;
-        source.spatialBlend = 0f; // Asegura que es 2D
+        source.spatialBlend = 0f; 
+        source.loop = loop;
+        source.Play();
+
+        currentPoolIndex = (currentPoolIndex + 1) % poolSize;
+    }
+
+    public void PlayBotonUI(float volumen = 0.5f)
+    {
+        if (sonidoBotonUI == null) return;
+
+        AudioSource source = audioPool[currentPoolIndex];
+        source.clip = sonidoBotonUI;
+        source.volume = volumen;
+        source.spatialBlend = 0f; 
         source.loop = false;
         source.Play();
 
         currentPoolIndex = (currentPoolIndex + 1) % poolSize;
     }
 
-    // FUNCIÓN 2: Sonido del Mundo Real (3D)
     public void PlaySFXAtPosition(AudioClip clip, Vector3 posicion, float volumen = 1f)
     {
         if (clip == null) return;
@@ -88,36 +95,33 @@ public class SFXManager : MonoBehaviour
         source.transform.position = posicion;
         source.clip = clip;
         source.volume = volumen;
-        source.spatialBlend = 1f; // Convierte a 3D espacial
-        source.minDistance = 1f;  // Máximo volumen a 1 metro o menos
-        source.maxDistance = 10f; // Deja de escucharse por completo a los 10 metros
+        source.spatialBlend = 1f; 
+        source.minDistance = 1f; 
+        source.maxDistance = 5f; 
         source.loop = false;
         source.Play();
 
         currentPoolIndex = (currentPoolIndex + 1) % poolSize;
     }
 
-    // FUNCIÓN 3: Sonido infinito del Caldero (3D con Atenuación por distancia)
-    public void PlayCalderoLoop(Vector3 posicion, float volumen = 0.6f)
+    public void PlayCalderoLoop(Vector3 posicion, float volumen = 0.5f)
     {
         if (calderoBurbujeoNormal == null) return;
 
         calderoAmbientalSource.transform.position = posicion;
         calderoAmbientalSource.clip = calderoBurbujeoNormal;
         calderoAmbientalSource.volume = volumen;
-        calderoAmbientalSource.spatialBlend = 1f; // Sonido 3D
-        calderoAmbientalSource.loop = true;       // Se repite infinitamente
+        calderoAmbientalSource.spatialBlend = 1f; 
+        calderoAmbientalSource.loop = true;       
         calderoAmbientalSource.minDistance = 0.5f;
         calderoAmbientalSource.maxDistance = 2f;  
         calderoAmbientalSource.Play();
     }
 
-    // FUNCIÓN 4: Música de fondo en bucle (2D)
     public void PlayAmbientMusic(AudioClip clip, float volumen = 0.5f)
     {
         if (clip == null) return;
         
-        // Usamos el primer source del pool de forma fija para la música de fondo
         AudioSource musicSource = audioPool[0]; 
         musicSource.clip = clip;
         musicSource.volume = volumen;
