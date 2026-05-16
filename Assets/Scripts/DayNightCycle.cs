@@ -104,8 +104,15 @@ public class DayNightCycle : MonoBehaviour
 
     void FinalizarJornada()
     {
-        jornadaActiva = false; // Detiene el reloj al terminar
-        Debug.Log("Jornada terminada. Días completados: " + diaActual);
+        jornadaActiva = false; 
+        GameManager.Instance.misionEnProgreso = false; 
+        
+        if (SFXManager.Instance != null && SFXManager.Instance.musicaGanar != null)
+        {
+            SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaGanar, 0.6f);
+        }
+
+        // Y después llamaremos al Fade a Negro y al Guardado de Progreso
     }
 
     public void SiguienteDia()

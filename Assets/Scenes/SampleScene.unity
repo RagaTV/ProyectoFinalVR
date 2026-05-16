@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6277477583407907116, guid: f9817fabed355bd48baa232409bb5637, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7181964732152513250, guid: f9817fabed355bd48baa232409bb5637, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7735,8 +7735,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   "ingredientesEnElL\xEDquido": []
+  maxErroresPermitidos: 2
+  erroresCometidos: 0
   liquidoRenderer: {fileID: 1706072113}
   modeloCaldero: {fileID: 1125209362}
+  prefabExplosionVFX: {fileID: 1494083766182838, guid: 151b49b11ab5924429acc76ead6435fa, type: 3}
 --- !u!135 &1174674677
 SphereCollider:
   m_ObjectHideFlags: 0

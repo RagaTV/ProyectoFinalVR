@@ -170,11 +170,23 @@ public class GameManager : MonoBehaviour
         Debug.Log($"<b><color=#FFD700>[BILLETERA]</color></b> -{cantidad}. Total: {dineroTotal}");
     }
 
-    /*
-    // Si se acabó el tiempo y el jugador perdió el día:
-    SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaPerder, 0.6f);
+    public void ForzarFinDeJornada()
+    {
+        Debug.Log("<b><color=#8B0000>[GAME OVER]</color></b> Jornada abortada. Cerrando laboratorio...");
+        
+        misionEnProgreso = false;
 
-    // Si logró la meta del día con éxito:
-    SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaGanar, 0.6f);
-    */
+        DayNightCycle reloj = FindObjectOfType<DayNightCycle>();
+        if (reloj != null)
+        {
+            reloj.jornadaActiva = false; 
+        }
+
+        if (SFXManager.Instance != null && SFXManager.Instance.musicaPerder != null)
+        {
+            SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaPerder, 0.5f);
+        }
+
+        // NOTA PARA EL FUTURO: Aquí es donde, en la Fase 3, llamaremos al Fade a Negro y al Guardado.
+    }
 }

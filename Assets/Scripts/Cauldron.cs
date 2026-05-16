@@ -7,11 +7,18 @@ public class Cauldron : MonoBehaviour
     [Header("Memoria de la Poción")]
     public List<IngredientData> ingredientesEnElLíquido = new List<IngredientData>();
 
+    [Header("Resistencia y Errores")]
+    public int maxErroresPermitidos = 2; 
+    public int erroresCometidos = 0;
+    private bool calderoDestruido = false; 
+
     [Header("Referencias Visuales")]
     public MeshRenderer liquidoRenderer;
-    public Transform modeloCaldero; // Arrastra aquí el objeto del Caldero para que tiemble
+    public Transform modeloCaldero; 
 
     private bool estaTemblando = false;
+    [Header("Efectos Visuales")]
+    public GameObject prefabExplosionVFX;
 
     void Start()
     {
@@ -20,11 +27,25 @@ public class Cauldron : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Ingredient ingredienteCayo = other.GetComponent<Ingredient>();
-        SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.ingredienteAlCaldero, transform.position, 1f);
+        if (calderoDestruido) return;
 
+        Ingredient ingredienteCayo = other.GetComponent<Ingredient>();
+        
         if (ingredienteCayo != null && ingredienteCayo.data != null)
         {
+            SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.ingredienteAlCaldero, transform.position, 1f);
+            
+            if (!GameManager.Instance.misionEnProgreso)
+            {
+                Debug.Log($"<b><color=#FFD700>[CALDERO]</color></b> Jornada inactiva. Ingrediente desperdiciado, pero sin castigo de vida.");
+                
+                SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.errorIngrediente, transform.position, 1f);
+                if (!estaTemblando) StartCoroutine(EfectoTemblor());
+                StartCoroutine(EfectoDisolver(ingredienteCayo.gameObject, false));
+                
+                return; 
+            }
+
             Debug.Log($"<b><color=#6495ED>[CALDERO]</color></b> Detectado: {ingredienteCayo.data.nombreIngrediente}. Validando con GameManager...");
             
             bool esCorrecto = GameManager.Instance.ValidarIngrediente(ingredienteCayo.data, ingredientesEnElLíquido);
@@ -37,10 +58,20 @@ public class Cauldron : MonoBehaviour
             }
             else
             {
-                Debug.Log($"<b><color=#FF4500>[CALDERO]</color></b> Rechazando ingrediente incorrecto. Iniciando secuencia de temblor.");
-                SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.errorIngrediente, transform.position, 1f);
-                if (!estaTemblando) StartCoroutine(EfectoTemblor());
+                erroresCometidos++;
+                Debug.Log($"<b><color=#FF4500>[CALDERO]</color></b> Error cometido: {erroresCometidos} / {maxErroresPermitidos}");
+
                 StartCoroutine(EfectoDisolver(ingredienteCayo.gameObject, false));
+
+                if (erroresCometidos > maxErroresPermitidos)
+                {
+                    ExplotarCaldero();
+                }
+                else
+                {
+                    SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.errorIngrediente, transform.position, 1f);
+                    if (!estaTemblando) StartCoroutine(EfectoTemblor());
+                }
             }
         }
     }
@@ -85,19 +116,34 @@ public class Cauldron : MonoBehaviour
         estaTemblando = false;
     }
 
-    /*public void ExplotarCaldero()
+    public void ExplotarCaldero()
     {
-        // Sonido de explosión 3D justo en el caldero
-        SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.calderoExplota, transform.position, 0.8f);
+        calderoDestruido = true;
         
-        // Aquí continuaría tu código para ocultar el caldero o poner humo...
-    }*/
+        SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.calderoExplota, transform.position, 1f);
+        
+        Debug.Log("<b><color=#8B0000>[GAME OVER]</color></b> ¡EL CALDERO HA EXPLOTADO!");
+
+        // Aquí apagamos el líquido para simular que se derramó o evaporó
+        if (liquidoRenderer != null)
+        {
+            liquidoRenderer.gameObject.SetActive(false);
+        }
+
+        if (prefabExplosionVFX != null)
+        {
+            // Creamos las partículas en la posición del caldero
+            GameObject explosion = Instantiate(prefabExplosionVFX, transform.position, Quaternion.identity);
+            
+            Destroy(explosion, 3f); 
+        }
+        GameManager.Instance.ForzarFinDeJornada(); 
+    }
 
     public void CambiarColorFinal(Color nuevoColor)
     {
-        if (liquidoRenderer != null)
+        if (liquidoRenderer != null && !calderoDestruido)
         {
-            // Usamos una Corrutina para que el cambio de color sea suave y no de golpe
             StartCoroutine(TransicionColor(nuevoColor));
         }
     }
@@ -106,17 +152,29 @@ public class Cauldron : MonoBehaviour
     {
         Material mat = liquidoRenderer.material;
         Color inicial = mat.color;
-        float duracion = 2.0f; // 2 segundos de transición
+        float duracion = 2.0f; 
         float t = 0;
 
         while (t < duracion)
         {
             t += Time.deltaTime;
-            // Mezclamos del color actual al objetivo respetando el Alpha que ya tenías
             Color colorResultante = Color.Lerp(inicial, objetivo, t / duracion);
             colorResultante.a = inicial.a; 
             mat.color = colorResultante;
             yield return null;
+        }
+    }
+
+    public void ResetearCaldero()
+    {
+        ingredientesEnElLíquido.Clear();
+        erroresCometidos = 0;
+        calderoDestruido = false;
+        
+        if (liquidoRenderer != null)
+        {
+            liquidoRenderer.gameObject.SetActive(true);
+            liquidoRenderer.material.color = new Color(0.5f, 0f, 0.5f, 0.8f);
         }
     }
 }
