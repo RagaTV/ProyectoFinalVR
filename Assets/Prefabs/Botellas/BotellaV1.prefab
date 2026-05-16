@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 192418686}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Attach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1438990917}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Attach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2071218950}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: attach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1568109038}
   - component: {fileID: 1568109036}
   - component: {fileID: 4169551580620346073}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BotellaV1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,4 +369,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
-  ingredientPrefab: {fileID: 3875179029725274350}

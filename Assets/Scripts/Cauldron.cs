@@ -89,6 +89,8 @@ public class Cauldron : MonoBehaviour
 
         while (t < duracion)
         {
+            if (obj == null) yield break; 
+            
             t += Time.deltaTime;
             obj.transform.localScale = Vector3.Lerp(escalaInicial, Vector3.zero, t / duracion);
             yield return null;

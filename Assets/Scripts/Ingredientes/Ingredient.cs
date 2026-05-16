@@ -1,74 +1,29 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 using System.Collections;
+using UnityEngine.XR.Interaction.Toolkit; // Necesario para detectar la mano
 
 public class Ingredient : MonoBehaviour
 {
     [Header("Configuración de Datos")]
-    public IngredientData data; 
-    
-    [Header("Configuración de Prefabs")]
-    public GameObject ingredientPrefab;
-    private Vector3 initialPosition;
-    private Quaternion initialRotation;
-    private bool hasRespawned = false; 
+    public IngredientData data;
+
+    private Coroutine rutinaDestruccion;
     private XRGrabInteractable grabInteractable;
 
-    void Awake()
+    private void Awake()
     {
-        initialPosition = transform.position;
-        initialRotation = transform.rotation;
-
         grabInteractable = GetComponent<XRGrabInteractable>();
+        if (grabInteractable != null)
+        {
+            grabInteractable.selectEntered.AddListener(AlSerAgarrado);
+        }
     }
 
-    void OnEnable()
-    {
-        grabInteractable.selectEntered.AddListener(OnGrab);
-    }
-
-    void OnDisable()
+    private void OnDestroy()
     {
         if (grabInteractable != null)
-            grabInteractable.selectEntered.RemoveListener(OnGrab);
-    }
-
-    void OnGrab(SelectEnterEventArgs args)
-    {
-        if (args.interactorObject is XRSocketInteractor)
         {
-            return; 
-        }
-
-        if (SFXManager.Instance != null)
-        {
-            SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.agarrarObjeto, transform.position, 0.7f);
-        }
-
-        if (!hasRespawned)
-        {
-            hasRespawned = true;
-            StartCoroutine(RespawnSequence()); 
-        }
-        
-        StopCoroutine("CleanupTimer"); 
-    }
-
-    IEnumerator RespawnSequence()
-    {
-        yield return new WaitForSeconds(2f);
-        
-        if (ingredientPrefab != null)
-        {
-            GameObject nuevo = Instantiate(ingredientPrefab, initialPosition, initialRotation);
-            
-            nuevo.name = ingredientPrefab.name;
-
-            Ingredient scriptNuevo = nuevo.GetComponent<Ingredient>();
-            if(scriptNuevo != null)
-            {
-                scriptNuevo.hasRespawned = false; 
-            }
+            grabInteractable.selectEntered.RemoveListener(AlSerAgarrado);
         }
     }
 
@@ -76,16 +31,27 @@ public class Ingredient : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Suelo"))
         {
-            StartCoroutine("CleanupTimer");
+            if (rutinaDestruccion == null) 
+            {
+                rutinaDestruccion = StartCoroutine(CuentaRegresivaDestruccion());
+                Debug.Log($"<color=grey>[LIMPIEZA]</color> {data.nombreIngrediente} cayó al suelo. Iniciando cuenta regresiva de 5s...");
+            }
         }
     }
 
-    IEnumerator CleanupTimer()
+    private void AlSerAgarrado(SelectEnterEventArgs args)
     {
-        yield return new WaitForSeconds(10f);
-        if (!grabInteractable.isSelected)
+        if (rutinaDestruccion != null)
         {
-            Destroy(gameObject);
+            StopCoroutine(rutinaDestruccion);
+            rutinaDestruccion = null;
+            Debug.Log($"<color=green>[LIMPIEZA]</color> {data.nombreIngrediente} fue salvado del suelo.");
         }
+    }
+
+    private IEnumerator CuentaRegresivaDestruccion()
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
     }
 }
