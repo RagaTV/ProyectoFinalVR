@@ -2725,26 +2725,88 @@ MonoBehaviour:
   contenedorDialogo: {fileID: 224313706}
   baseDeDatos:
   - categoria: Inicio
-    frases:
-    - "\xA1Miau! Bienvenido al laboratorio, humano."
-    - "\"Mis bigotes presienten que hoy ser\xE1 un d\xEDa de muchas monedas de oro.\""
+    frasesYAudios:
+    - textoFrase: "Ya hac\xEDa falta que llegaras, humano. \xA1A darle que hay mucho
+        trabajo!"
+      audioFrase: {fileID: 0}
+    - textoFrase: "Huele a que hoy nos va a ir muy bien con las propinas. \xA1Manos
+        a la obra!"
+      audioFrase: {fileID: 0}
+    - textoFrase: "Hola, hola. Por favor, intenta que el caldero no vuele en mil
+        pedazos hoy, \xBFs\xED?"
+      audioFrase: {fileID: 0}
+    - textoFrase: "Qu\xE9 bueno verte. Prep\xE1rate, que presiento que se viene un
+        d\xEDa movido."
+      audioFrase: {fileID: 0}
+    - textoFrase: "Al fin llegas. Ponte c\xF3modo, que hoy el tablero de pedidos
+        va a estar a reventar."
+      audioFrase: {fileID: 0}
   - categoria: Peligro
-    frases:
-    - "\xA1Cuidado! \xA1Eso va a explotar!"
-    - "\"\xA1Miau! \xA1Eso burbujea de forma muy sospechosa! \xA1Haz algo!\""
-    - "\"\xA1Si esto explota, espero que sepas que tengo siete vidas, pero t\xFA
-      solo una!\""
-    - "\"\xA1Huele a quemado! \xA1Recuerda revisar el libro!\""
-    - "\"\xA1Error! \xA1Ese no era el ingrediente!\""
+    frasesYAudios:
+    - textoFrase: "\xA1Oye, oye! \xA1Eso est\xE1 haciendo unos ruidos muy raros!
+        \xA1Cuidado!"
+      audioFrase: {fileID: 0}
+    - textoFrase: "\xA1Mu\xE9vete, mu\xE9vete! \xA1Eso va a saltar en cualquier momento!"
+      audioFrase: {fileID: 0}
+    - textoFrase: "\xA1Huele a quemado, humano!"
+      audioFrase: {fileID: 0}
+    - textoFrase: "\xA1Acu\xE9rdate que yo tengo siete vidas, pero t\xFA solo tienes
+        una! \xA1Cuidado!"
+      audioFrase: {fileID: 0}
+    - textoFrase: "\xA1Humano, el caldero est\xE1 haciendo 'glup glup' demasiado
+        r\xE1pido!"
+      audioFrase: {fileID: 0}
+    - textoFrase: "\xA1No te distraigas justo ahora!"
+      audioFrase: {fileID: 0}
   - categoria: Aleatorio
-    frases:
-    - "\xBFHas visto mi rat\xF3n de juguete por ah\xED?\""
-    - "\"\xBFHas visto mi rat\xF3n de juguete? Jurar\xEDa que lo dej\xE9 cerca de
-      la Amatista...\""
-    - "\"No te quedes mirando las chispas, \xA1tenemos pedidos que entregar!\""
-    - "\"Si te sobra un poco de pescado, ya sabes d\xF3nde est\xE1 mi plato.\""
-    - "\"\xBFRecuerdas el orden? El libro es tu mejor amigo, despu\xE9s de m\xED.\""
-  velocidadEscritura: 0.05
+    frasesYAudios:
+    - textoFrase: "\xBFNo has visto mi rat\xF3n de juguete? Jurar\xEDa que lo dej\xE9
+        por aqu\xED cerca..."
+      audioFrase: {fileID: 0}
+    - textoFrase: "A veces pienso que yo deber\xEDa llevar las finanzas del negocio
+        y t\xFA solo las mezclas."
+      audioFrase: {fileID: 0}
+    - textoFrase: "Si te sobra un poquito de pescado de los ingredientes... ya sabes
+        d\xF3nde est\xE1 mi plato."
+      audioFrase: {fileID: 0}
+  - categoria: Consejos
+    frasesYAudios:
+    - textoFrase: "Si la descripci\xF3n de la pizarra es confusa, lo mejor es consultar
+        el libro detalladamente."
+      audioFrase: {fileID: 0}
+    - textoFrase: "Antes de agregar cualquier cosa, aseg\xFArate de haber presionado
+        el bot\xF3n de inicio de jornada."
+      audioFrase: {fileID: 0}
+    - textoFrase: "Una vez que la poci\xF3n est\xE9 lista en su frasco, col\xF3cala
+        en la charola y presione el bot\xF3n de entrega para recibir una recompensa."
+      audioFrase: {fileID: 0}
+    - textoFrase: "No te precipites con los ingredientes ambiguos, una mala lectura
+        arruinar\xE1 toda la poci\xF3n."
+      audioFrase: {fileID: 0}
+  - categoria: Nueva Partida
+    frasesYAudios:
+    - textoFrase: "\xA1Hola, humano! Me da gusto verte. \xBFQu\xE9 te parece si comenzamos?
+        A tu lado derecho tienes una pizarra donde aparecer\xE1 la receta que solicita
+        el cliente; podr\xE1s notar su dificultad de acuerdo con el color y la cantidad
+        de estrellas. Ten cuidado, algunos clientes se expresan de forma muy extra\xF1a.\r\nA
+        tu izquierda tienes la mejor herramienta de todas: el libro de ingredientes.
+        Si te sientes perdido, puedes consultarlo ah\xED. Detr\xE1s de t\xED encontrar\xE1s
+        la colecci\xF3n con los materiales y algunos frascos para servir tus pociones
+        cuando est\xE9n listas.\r\nUna vez terminada la mezcla, coloca el frasco
+        en la charola a un costado del caldero; este se llenar\xE1 y podr\xE1s llevarlo
+        a la charola de la mesa de entrega. No olvides presionar el bot\xF3n rojo
+        ubicado a un lado para cobrar tu recompensa. Adem\xE1s, junto a la pizarra
+        ver\xE1s un bot\xF3n turquesa que sirve para solicitar un nuevo cliente cuando
+        termines el actual.\r\nPero, \xA1Ten cuidado!, si te equivocas dos veces
+        todo puede explotar, aunque despu\xE9s podr\xE1s mejorar la estabilidad y
+        equivocarte un poco m\xE1s.\r\nCuando te sientas listo, presiona el bot\xF3n
+        negro para comenzar la jornada de hoy.\r"
+      audioFrase: {fileID: 0}
+  - categoria: Segundo dia
+    frasesYAudios:
+    - textoFrase: "\xA1Wow, que gran d\xEDa! Recuerda, pulsar el bot\xF3n negro para
+        iniciar una nueva jornada.\r"
+      audioFrase: {fileID: 0}
   tiempoVisibleDespuesDeEscribir: 2.5
 --- !u!4 &311765330 stripped
 Transform:
@@ -14311,15 +14373,11 @@ MonoBehaviour:
   contenedorDialogo: {fileID: 2018776784}
   baseDeDatos:
   - categoria: Inicio
-    frases:
-    - "\xA1Miau! Bienvenido al laboratorio, humano."
+    frasesYAudios: []
   - categoria: Peligro
-    frases:
-    - "\xA1Cuidado! \xA1Eso va a explotar!"
+    frasesYAudios: []
   - categoria: Aleatorio
-    frases:
-    - "\xBFHas visto mi rat\xF3n de juguete por ah\xED?\""
-  velocidadEscritura: 0.05
+    frasesYAudios: []
   tiempoVisibleDespuesDeEscribir: 2.5
 --- !u!43 &1933400436
 Mesh:
