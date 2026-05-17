@@ -28,6 +28,7 @@ public class CatDialogManager : MonoBehaviour {
     public float tiempoVisibleDespuesDeEscribir = 2.5f;
 
     private AudioSource miAudioSource;
+    [SerializeField] private AudioSource audioSourcePrefab;
 
     void Start() {
         miAudioSource = GetComponent<AudioSource>();
