@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
-  m_Name: DataUnguentoGerrero
+  m_Name: DataUnguentoGuerrero
   m_EditorClassIdentifier: 
   nombrePocion: "Ung\xFCento del Guerrero"
   colorFinal: {r: 0.54509807, g: 0, b: 0.54509807, a: 1}

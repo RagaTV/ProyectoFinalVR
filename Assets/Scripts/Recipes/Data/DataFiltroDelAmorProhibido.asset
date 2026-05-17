@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataFiltroDelAmorProhibido
+  m_EditorClassIdentifier: 
+  nombrePocion: Filtro del Amor Prohibido
+  colorFinal: {r: 0.8018868, g: 0.15508187, b: 0.4236743, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: 5af919fb099857449a3623171437dd07, type: 2}
+  - {fileID: 11400000, guid: eb880b852fdef86488624374dd618081, type: 2}
+  descripcionClara: "Usa una Rosa y Hongos Alucin\xF3genos."
+  descripcionAmbigua: Flor del amor con las setas que nublan la mente.
+  descripcionConfusa: "Una belleza de p\xE9talo punzante que se pierde en el velo
+    de las visiones y los sue\xF1os."
+  recompensaMonedas: 1
+  clasificacion: 0

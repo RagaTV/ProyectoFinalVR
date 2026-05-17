@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17905533, g: 0.21854778, b: 0.27339393, a: 1}
+  m_IndirectSpecularColor: {r: 0.17905532, g: 0.21854778, b: 0.27339393, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3022,22 +3022,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   todasLasRecetas:
-  - {fileID: 11400000, guid: e9272f05a9cf240418e32677d5661b7e, type: 2}
-  - {fileID: 11400000, guid: ae5bb20b60ed55542853b9fe8adcb6ab, type: 2}
-  - {fileID: 11400000, guid: 498dbe426da03e1439cb98cf63cf2f6d, type: 2}
-  - {fileID: 11400000, guid: b673d1c3c7ec2d349b85e7ff1e7d3e3a, type: 2}
-  - {fileID: 11400000, guid: dba0bd3ee72093f41814347d2c640a6e, type: 2}
-  - {fileID: 11400000, guid: fd711f5966ae5a043a1bd327b578308b, type: 2}
   - {fileID: 11400000, guid: 7e052e1fa6456eb48bd3812b35c5bc99, type: 2}
+  - {fileID: 11400000, guid: cbd6de56a38b3854aacb9c20f315184d, type: 2}
   - {fileID: 11400000, guid: 15e8768674de41e44a122671a82268d3, type: 2}
   - {fileID: 11400000, guid: 5214fe3c5e615964c817225536a039b6, type: 2}
   - {fileID: 11400000, guid: 6a35cf1d4b79ffa4a9bf918f9230fba7, type: 2}
+  - {fileID: 11400000, guid: 8407e1d1a5dbb004ebf4c3478ba82066, type: 2}
   - {fileID: 11400000, guid: 7d26e7471b1850b49a4844f52e002ac2, type: 2}
+  - {fileID: 11400000, guid: 65d17cbc1f2d8534d99e7b08ba1531cf, type: 2}
+  - {fileID: 11400000, guid: 1c45eeaec1cf7d248b0144b4b2b72a88, type: 2}
   - {fileID: 11400000, guid: 5bb4967f323c6d346b8c8fcc3f06737d, type: 2}
+  - {fileID: 11400000, guid: 67f09692c5815e944b9dec97c86524fd, type: 2}
   - {fileID: 11400000, guid: 2bd28cd35aa58e247b241f0ce837bf79, type: 2}
+  - {fileID: 11400000, guid: 4039441e07819f54f827b391561569a3, type: 2}
+  - {fileID: 11400000, guid: 84c94b7dbfbe92741b06ede03ad1ee0f, type: 2}
   - {fileID: 11400000, guid: 42dd01145f46ed9418db5a1f881b6ede, type: 2}
+  - {fileID: 11400000, guid: 20f810ed23d073347a33a7f0e1b938f2, type: 2}
+  - {fileID: 11400000, guid: 8b8c9b256faebdb4cb568b3f8be1bf99, type: 2}
+  - {fileID: 11400000, guid: f517178f0f8aded44a344c740e9bb0da, type: 2}
+  - {fileID: 11400000, guid: 49cc593d60fc63945bdc53c24da55440, type: 2}
   - {fileID: 11400000, guid: b8daea2fbe6cdb445aad00f452657871, type: 2}
   - {fileID: 11400000, guid: bbf1cd5b5528f3447ae07be63a51e861, type: 2}
+  - {fileID: 11400000, guid: d46b696c6517feb4a84c46926540f476, type: 2}
+  - {fileID: 11400000, guid: fd711f5966ae5a043a1bd327b578308b, type: 2}
+  - {fileID: 11400000, guid: dba0bd3ee72093f41814347d2c640a6e, type: 2}
+  - {fileID: 11400000, guid: 4fcafd33a0b53644cbaea660e7754d1b, type: 2}
+  - {fileID: 11400000, guid: b673d1c3c7ec2d349b85e7ff1e7d3e3a, type: 2}
+  - {fileID: 11400000, guid: 8dfa9db8d4686bc4da0bc20b2ac26f1b, type: 2}
+  - {fileID: 11400000, guid: 498dbe426da03e1439cb98cf63cf2f6d, type: 2}
+  - {fileID: 11400000, guid: ae5bb20b60ed55542853b9fe8adcb6ab, type: 2}
+  - {fileID: 11400000, guid: e9272f05a9cf240418e32677d5661b7e, type: 2}
   recetaObjetivoActual: {fileID: 0}
   targetFrameRate: 72
   disableVSync: 1
@@ -7621,7 +7635,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22616
+  m_Name: pb_Mesh23576
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9409,7 +9423,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22182
+  m_Name: pb_Mesh23044
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9868,7 +9882,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22700
+  m_Name: pb_Mesh23660
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10436,7 +10450,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21884
+  m_Name: pb_Mesh22682
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13788,7 +13802,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22518
+  m_Name: pb_Mesh23468
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14313,7 +14327,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22090
+  m_Name: pb_Mesh22936
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14555,7 +14569,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22452
+  m_Name: pb_Mesh23402
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
