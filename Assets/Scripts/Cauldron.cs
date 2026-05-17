@@ -146,6 +146,7 @@ public class Cauldron : MonoBehaviour
     {
         if (liquidoRenderer != null && !calderoDestruido)
         {
+            nuevoColor.a = 0.5f;
             StartCoroutine(TransicionColor(nuevoColor));
         }
     }

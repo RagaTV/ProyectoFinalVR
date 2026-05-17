@@ -19,7 +19,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool disableVSync = true;
     public GameObject monedaPrefab;
     public Transform puntoAparicionPlato;
+    [Header("Control de Estados")]
     public bool misionEnProgreso = false;
+    public bool recetaCompletada = false;
+
     [Header("Transiciones de VR")]
     public CanvasGroup fadeCanvasGroup; 
     public TextMeshProUGUI textoFade;
@@ -117,8 +120,13 @@ public class GameManager : MonoBehaviour
 
     public bool ValidarIngrediente(IngredientData ingredienteCayo, List<IngredientData> listaCaldero)
     {
-        // 1. ¿El ingrediente es parte de la receta activa?
         bool esParte = recetaObjetivoActual.ingredientesRequeridos.Contains(ingredienteCayo);
+
+        if (recetaCompletada)
+        {
+            Debug.Log($"<b><color=#FF0000>[ALQUIMIA]</color></b> ¡ERROR! La poción ya está lista. No puedes añadir <b>{ingredienteCayo.nombreIngrediente}</b> hasta atender al siguiente cliente.");
+            return false; 
+        }
 
         if (!esParte)
         {
@@ -131,6 +139,7 @@ public class GameManager : MonoBehaviour
         if (listaCaldero.Contains(ingredienteCayo))
         {
             Debug.Log($"<b><color=#FFFF00>[ALQUIMIA]</color></b> El ingrediente <b>{ingredienteCayo.nombreIngrediente}</b> ya está en el caldero. (Duplicado)");
+            return false;
         }
 
         // LOG DE ACIERTO: En verde
@@ -150,6 +159,8 @@ public class GameManager : MonoBehaviour
 
         if (requeridos.SequenceEqual(actuales))
         {
+            recetaCompletada = true;
+
             string colorHex = ColorUtility.ToHtmlStringRGB(recetaObjetivoActual.colorFinal);
             Debug.Log($"<b><color=#{colorHex}>[SISTEMA]</color></b> ¡POCIÓN FINALIZADA! Has creado <b>{recetaObjetivoActual.nombrePocion}</b>.");
 

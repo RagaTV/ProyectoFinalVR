@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class BoardController : MonoBehaviour
 {
@@ -40,17 +41,59 @@ public class BoardController : MonoBehaviour
 
     public void AsignarNuevaMision()
     {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.recetaCompletada = false; 
+        }
+        
         SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.maullidoGato, objetoGato.transform.position, 1f);
         clientesAtendidosHoy++;
 
-        var recetas = GameManager.Instance.todasLasRecetas;
-        RecipeData recetaElegida = recetas[Random.Range(0, recetas.Count)];
+        int diaHoy = 1; 
+        if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null) {
+            diaHoy = SaveManager.Instance.datosActuales.diaActual;
+        }
+
+        var todasLasRecetas = GameManager.Instance.todasLasRecetas;
+        List<RecipeData> recetasPermitidas = new List<RecipeData>();
+
+        foreach (RecipeData receta in todasLasRecetas) 
+        {
+            if (diaHoy <= 2) 
+            {
+                if (receta.clasificacion == DificultadReceta.Basica_2_Ingredientes)
+                    recetasPermitidas.Add(receta);
+            }
+            else if (diaHoy <= 4) 
+            {
+                if (receta.clasificacion == DificultadReceta.Basica_2_Ingredientes || 
+                    receta.clasificacion == DificultadReceta.Intermedia_3_Ingredientes)
+                    recetasPermitidas.Add(receta);
+            }
+            else 
+            {
+                recetasPermitidas.Add(receta);
+            }
+        }
+
+        if (recetasPermitidas.Count == 0) {
+            Debug.LogWarning("<color=red>[BOARD]</color> Error de filtro: Lista vacía. Usando todas las recetas.");
+            recetasPermitidas = todasLasRecetas;
+        }
+
+        RecipeData recetaElegida = recetasPermitidas[Random.Range(0, recetasPermitidas.Count)];
 
         int dificultadCalculada = recetaElegida.ingredientesRequeridos.Count;
         GameManager.Instance.recetaObjetivoActual = recetaElegida;
         textoNombre.text = "Receta: " + recetaElegida.nombrePocion;
 
         int suerte = Random.Range(0, 3);
+
+        if (diaHoy <= 2)
+        {
+            suerte = 0;
+        }
+
         Color colorEstrellas = Color.white;
 
         switch (suerte)
@@ -75,8 +118,6 @@ public class BoardController : MonoBehaviour
                 colorEstrellas = Color.white;
                 break;
         }
-
-        textoDescripcion.text = elegirDescripcion(recetaElegida);
 
         int monedas = calcularMonedas(dificultadCalculada);
         recetaElegida.recompensaMonedas = monedas;
@@ -125,27 +166,6 @@ public class BoardController : MonoBehaviour
         if(cantIngredientes == 3) return 3;
         if(cantIngredientes >= 4) return 5;
         return 1;
-    }
-
-    string elegirDescripcion(RecipeData r) 
-    {
-        // Generamos un número aleatorio entre 0 y 2
-        int suerte = Random.Range(0, 3);
-
-        switch (suerte)
-        {
-            case 0:
-                Debug.Log("Pizarra: Mostrando descripción CLARA");
-                return r.descripcionClara;
-            case 1:
-                Debug.Log("Pizarra: Mostrando descripción AMBIGUA");
-                return r.descripcionAmbigua;
-            case 2:
-                Debug.Log("Pizarra: Mostrando descripción CONFUSA");
-                return r.descripcionConfusa;
-            default:
-                return r.descripcionClara;
-        }
     }
 
     void actualizarEstrellas(int cantIngredientes, Color colorElegido) {

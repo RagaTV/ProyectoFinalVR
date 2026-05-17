@@ -10,7 +10,6 @@ public class DeliveryPoint : MonoBehaviour
 
     public void EntregarPedido()
     {
-        // 1. Verificamos si hay una botella en el socket de entrega
         if (fillerScript != null && fillerScript.socketEntrega.hasSelection)
         {
             Debug.Log("<color=green>[ENTREGA]</color> Procesando entrega...");
@@ -28,8 +27,6 @@ public class DeliveryPoint : MonoBehaviour
             GameManager.Instance.StartCoroutine(GameManager.Instance.SpawnMonedasConIntervalo(recompensa));
 
             fillerScript.socketEntrega.socketActive = false;
-            
-
         }
         else
         {
@@ -40,7 +37,6 @@ public class DeliveryPoint : MonoBehaviour
     IEnumerator AnimacionBoton()
     {
         Vector3 posOriginal = parteRoja.transform.localPosition;
-        // Baja un poco en el eje Y (ajusta el -0.02f según el tamaño de tu botón)
         parteRoja.transform.localPosition = posOriginal + new Vector3(0, -0.02f, 0); 
         yield return new WaitForSeconds(0.15f);
         parteRoja.transform.localPosition = posOriginal;

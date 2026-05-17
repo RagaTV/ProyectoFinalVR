@@ -3021,6 +3021,7 @@ MonoBehaviour:
   monedaPrefab: {fileID: 5969444062084274703, guid: 9920c7ae50c56234585c150a863dbc4f, type: 3}
   puntoAparicionPlato: {fileID: 0}
   misionEnProgreso: 0
+  recetaCompletada: 0
   fadeCanvasGroup: {fileID: 0}
   textoFade: {fileID: 0}
   dineroTotal: 0
@@ -4908,7 +4909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jornadaActiva: 0
-  segundosRealesPorDia: 600
+  segundosRealesPorDia: 300
   sunLight: {fileID: 705507994}
   dayPointLight: {fileID: 1681026799}
   diaActual: 1
