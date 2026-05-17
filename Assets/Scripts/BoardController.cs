@@ -55,20 +55,20 @@ public class BoardController : MonoBehaviour
 
         switch (suerte)
         {
-            case 0: // CLARA / Normal
+            case 0: 
                 Debug.Log("Pizarra: Mostrando descripción CLARA. Estrellas BLANCAS.");
                 textoDescripcion.text = recetaElegida.descripcionClara;
-                colorEstrellas = Color.white; // Blanco brillante estándar
+                colorEstrellas = Color.white;
                 break;
             case 1: // AMBIGUA
                 Debug.Log("Pizarra: Mostrando descripción AMBIGUA. Estrellas AZULES.");
                 textoDescripcion.text = recetaElegida.descripcionAmbigua;
-                colorEstrellas = new Color(0f, 0.7f, 1f); // Un Cian/Azul brillante muy visible
+                colorEstrellas = new Color(0f, 0.7f, 1f); 
                 break;
             case 2: // CONFUSA
                 Debug.Log("Pizarra: Mostrando descripción CONFUSA. Estrellas AMARILLAS.");
                 textoDescripcion.text = recetaElegida.descripcionConfusa;
-                colorEstrellas = Color.yellow; // Amarillo intenso
+                colorEstrellas = Color.yellow; 
                 break;
             default:
                 textoDescripcion.text = recetaElegida.descripcionClara;

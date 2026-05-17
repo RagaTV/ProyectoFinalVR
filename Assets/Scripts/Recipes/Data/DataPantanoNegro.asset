@@ -21,3 +21,5 @@ MonoBehaviour:
   descripcionClara: Pejesapo, Rana y Rana Venenosa
   descripcionAmbigua: El que brilla en el agua y dos tipos de anfibios
   descripcionConfusa: 'La trinidad del lodo: luz abisal, salto simple y sudor mortal'
+  recompensaMonedas: 1
+  clasificacion: 1

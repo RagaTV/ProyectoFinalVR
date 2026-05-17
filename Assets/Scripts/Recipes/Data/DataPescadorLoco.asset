@@ -23,3 +23,5 @@ MonoBehaviour:
   descripcionAmbigua: "Luz de abismo, setas de locura, huesos de agua y piel t\xF3xica"
   descripcionConfusa: "Aquel que vio la luz del fondo perdi\xF3 el juicio, dej\xF3
     sus huesos y bebi\xF3 el veneno del pantano"
+  recompensaMonedas: 1
+  clasificacion: 2

@@ -22,3 +22,5 @@ MonoBehaviour:
   descripcionAmbigua: Piedra violeta, piedra clara y hierba de los altares
   descripcionConfusa: "Limpia el esp\xEDritu con la dualidad del cuarzo y el susurro
     verde"
+  recompensaMonedas: 1
+  clasificacion: 1

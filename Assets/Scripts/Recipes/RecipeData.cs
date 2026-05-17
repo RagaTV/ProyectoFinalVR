@@ -1,13 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-// Esto nos crea el atajo en el menú de click derecho de Unity
+public enum DificultadReceta {
+    Basica_2_Ingredientes,
+    Intermedia_3_Ingredientes,
+    Avanzada_4_Ingredientes
+}
+
 [CreateAssetMenu(fileName = "NuevaReceta", menuName = "Alquimia/Receta")]
 public class RecipeData : ScriptableObject
 {
     [Header("Información Básica")]
     public string nombrePocion;
-    public Color colorFinal = Color.green; // El color que tomará el agua al triunfar
+    public Color colorFinal = Color.green; 
 
     [Header("Ingredientes Necesarios")]
     [Tooltip("Arrastra aquí los IngredientData que forman esta receta")]
@@ -24,4 +29,7 @@ public class RecipeData : ScriptableObject
     public string descripcionConfusa;
     [Header("Economía")]
     public int recompensaMonedas = 1;
+    
+    [Header("Configuración de Progreso")]
+    public DificultadReceta clasificacion;
 }

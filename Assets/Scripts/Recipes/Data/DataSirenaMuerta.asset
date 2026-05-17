@@ -23,3 +23,5 @@ MonoBehaviour:
   descripcionAmbigua: Huesos de mar, colmillo de mar, joya violeta y una flor
   descripcionConfusa: "Lo que qued\xF3 de la marea, su mordida, su gema favorita
     y su \xFAltimo suspiro floral"
+  recompensaMonedas: 1
+  clasificacion: 2

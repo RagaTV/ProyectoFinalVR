@@ -21,3 +21,5 @@ MonoBehaviour:
   descripcionClara: "Rosa, Rana Venenosa y Hongo Alucin\xF3geno"
   descripcionAmbigua: "Belleza con espinas, piel letal y visiones de ensue\xF1o"
   descripcionConfusa: "Un romance que mata, que alucina y que huele a p\xE9talos"
+  recompensaMonedas: 1
+  clasificacion: 1

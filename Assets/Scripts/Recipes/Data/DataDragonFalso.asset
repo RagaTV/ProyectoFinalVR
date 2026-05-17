@@ -23,3 +23,5 @@ MonoBehaviour:
   descripcionAmbigua: Seta de fuego, fuerza bruta, flor solar y transparencia
   descripcionConfusa: Crea la llama con la mancha roja y el sol, dale cuerpo de bestia
     y claridad de vidrio
+  recompensaMonedas: 1
+  clasificacion: 2
