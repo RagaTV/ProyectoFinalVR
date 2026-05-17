@@ -2651,19 +2651,19 @@ MonoBehaviour:
     frasesYAudios:
     - textoFrase: "Ya hac\xEDa falta que llegaras, humano. \xA1A darle que hay mucho
         trabajo!"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 0e05b4c0b5b967b4093a313ce332f38d, type: 3}
     - textoFrase: "Huele a que hoy nos va a ir muy bien con las propinas. \xA1Manos
         a la obra!"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 0f6bcc9ad95c5c64895469194a6ba082, type: 3}
     - textoFrase: "Hola, hola. Por favor, intenta que el caldero no vuele en mil
         pedazos hoy, \xBFs\xED?"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 799ec25342401f64093f0f343481ca2a, type: 3}
     - textoFrase: "Qu\xE9 bueno verte. Prep\xE1rate, que presiento que se viene un
         d\xEDa movido."
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: ed2d851eb4aab214bb7f719605131ae8, type: 3}
     - textoFrase: "Al fin llegas. Ponte c\xF3modo, que hoy el tablero de pedidos
         va a estar a reventar."
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: a07d80505459eec4a9281c3f6b30593a, type: 3}
   - categoria: Peligro
     frasesYAudios:
     - textoFrase: "\xA1Oye, oye! \xA1Eso est\xE1 haciendo unos ruidos muy raros!
@@ -2758,9 +2758,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 6
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2793,7 +2793,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
