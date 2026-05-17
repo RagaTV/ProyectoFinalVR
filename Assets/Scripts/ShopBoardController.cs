@@ -91,34 +91,34 @@ public class ShopBoardController : MonoBehaviour
         var datos = SaveManager.Instance.datosActuales;
 
         if (datos.nivelEstabilidad >= 3) {
-            textoEstabilidad.text = "Estabilidad: MÁX (Nivel 3)";
+            textoEstabilidad.text = "- Estabilidad: MÁX (Nivel 3)";
         } else {
             int proximoCosto = costosEstabilidad[datos.nivelEstabilidad];
-            textoEstabilidad.text = $"Estabilidad Caldero (Niv {datos.nivelEstabilidad})\n[ Coste: {proximoCosto} Monedas ]";
+            textoEstabilidad.text = $"- Estabilidad Caldero (Niv {datos.nivelEstabilidad})\n\t[ Coste: {proximoCosto} Monedas ]";
         }
 
         if (datos.nivelBonoMonedas >= 2) {
-            textoBonoComercio.text = "Bono Comercio: MÁX (Nivel 2)";
+            textoBonoComercio.text = "- Bono Comercio: MÁX (Nivel 2)";
         } else {
             int proximoCosto = costosBono[datos.nivelBonoMonedas];
-            textoBonoComercio.text = $"Bono Comercio (Niv {datos.nivelBonoMonedas})\n[ Coste: {proximoCosto} Monedas ]";
+            textoBonoComercio.text = $"- Bono Comercio (Niv {datos.nivelBonoMonedas})\n\t[ Coste: {proximoCosto} Monedas ]";
         }
 
         if (datos.tieneImanEsencia) {
-            textoImanEsencia.text = "Imán de Esencia: ADQUIRIDO";
+            textoImanEsencia.text = "- Imán de Esencia: ADQUIRIDO";
         } else {
-            textoImanEsencia.text = $"Imán de Esencia (VIP)\n[ Coste: {costoImanEsencia} Monedas ]";
+            textoImanEsencia.text = $"- Imán de Esencia (VIP)\n\t[ Coste: {costoImanEsencia} Monedas ]";
         }
 
         Cauldron caldero = FindObjectOfType<Cauldron>();
         if (caldero != null)
         {
-            textoStatusCaldero.text = $"ESTADO DEL CALDERO\nErrores: {datos.erroresAcumulados} / {caldero.maxErroresPermitidos}";
+            textoStatusCaldero.text = $"ESTADO DEL CALDERO\n\t-Errores: {datos.erroresAcumulados} / {caldero.maxErroresPermitidos}";
             
             if (datos.erroresAcumulados == 0) {
-                textoBorrador.text = "Caldero Limpio\nNo requiere reparación";
+                textoBorrador.text = "- Caldero Limpio\n\tNo requiere reparación";
             } else {
-                textoBorrador.text = $"Remover Errores\n[ Coste: {costoBorrador} Monedas ]";
+                textoBorrador.text = $"- Remover Errores\n\t[ Coste: {costoBorrador} Monedas ]";
             }
         }
     }
