@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     [Header("Transiciones de VR")]
     public CanvasGroup fadeCanvasGroup; 
     public TextMeshProUGUI textoFade;
+    [Header("Configuración de Vidas")]
+    public int vidasMaximasHoy = 2; // Guardamos el total del día
+    public int vidasActualesHoy;
 
     void Awake()
     {
@@ -187,18 +190,15 @@ public class GameManager : MonoBehaviour
     public int dineroTotal = 0;
     public List<GameObject> monedasEnEscena = new List<GameObject>();
 
-    // Reemplaza tu función EntregarPremio por esta Corrutina
     public IEnumerator SpawnMonedasConIntervalo(int cantidad)
     {
         for (int i = 0; i < cantidad; i++)
         {
             Vector3 desfase = new Vector3(Random.Range(-0.05f, 0.05f), 0.02f, Random.Range(-0.05f, 0.05f));
             GameObject nuevaMoneda = Instantiate(monedaPrefab, puntoAparicionPlato.position + desfase, Quaternion.identity);
-            // La añadimos a nuestra lista de control
             SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.recibirMonedas, puntoAparicionPlato.position, 1f);
             monedasEnEscena.Add(nuevaMoneda);
             
-            // Esperamos 0.1 segundos entre cada moneda para que los colliders no exploten
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -279,6 +279,12 @@ public class GameManager : MonoBehaviour
         if (SFXManager.Instance != null)
         {
             SFXManager.Instance.DetenerTodoElAudio();
+        }
+
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.CargarProgreso(); 
+            dineroTotal = SaveManager.Instance.datosActuales.monedasTotales; 
         }
 
         Debug.Log("<color=orange>[SISTEMA]</color> Recargando día anterior. No se guardó el progreso.");

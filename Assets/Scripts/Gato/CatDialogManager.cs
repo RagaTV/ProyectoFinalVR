@@ -64,4 +64,5 @@ public class CatDialogManager : MonoBehaviour {
         yield return new WaitForSeconds(tiempoVisibleDespuesDeEscribir);
         contenedorDialogo.SetActive(false);
     }
+
 }

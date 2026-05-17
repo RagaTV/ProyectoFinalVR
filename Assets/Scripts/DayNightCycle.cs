@@ -54,13 +54,29 @@ public class DayNightCycle : MonoBehaviour
 
     void CalcularReloj()
     {
-        // Interpola entre las 10 y las 24 horas
         float horaDecimal = Mathf.Lerp(horaInicio, horaFin, progresoJornada);
-        int horas = Mathf.FloorToInt(horaDecimal);
-        int minutos = Mathf.FloorToInt((horaDecimal - horas) * 60);
+        int horas24 = Mathf.FloorToInt(horaDecimal);
+        int minutos = Mathf.FloorToInt((horaDecimal - horas24) * 60);
+
+        string periodo = "AM";
+        int horas12 = horas24;
+
+        if (horas24 >= 12)
+        {
+            periodo = "PM";
+            if (horas24 > 12)
+            {
+                horas12 = horas24 - 12; 
+            }
+        }
         
-        // Formato para el UI futuro
-        horaActualTexto = string.Format("{0:00}:{1:00}", horas, minutos);
+        if (horas24 == 24 || horas24 == 0)
+        {
+            horas12 = 12;
+            periodo = "AM";
+        }
+
+        horaActualTexto = string.Format("{0:00}:{1:00} {2}", horas12, minutos, periodo);
     }
 
     void ActualizarLuces()

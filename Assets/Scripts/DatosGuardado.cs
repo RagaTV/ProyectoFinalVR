@@ -3,8 +3,8 @@ public class DatosGuardado
 {
     public int diaActual = 1;
     public int monedasTotales = 0;
-    
-    // Aquí prepararemos el terreno para tus futuras mejoras
-    public int maxErroresCaldero = 2; 
-    public bool tieneEscudoComprado = false;
+    public int nivelEstabilidad = 0; 
+    public int nivelBonoMonedas = 0; 
+    public bool tieneImanEsencia = false; 
+    public int erroresAcumulados = 0;
 }

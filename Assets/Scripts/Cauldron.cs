@@ -61,6 +61,11 @@ public class Cauldron : MonoBehaviour
                 erroresCometidos++;
                 Debug.Log($"<b><color=#FF4500>[CALDERO]</color></b> Error cometido: {erroresCometidos} / {maxErroresPermitidos}");
 
+                if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
+                {
+                    SaveManager.Instance.datosActuales.erroresAcumulados = erroresCometidos;
+                }
+
                 StartCoroutine(EfectoDisolver(ingredienteCayo.gameObject, false));
 
                 if (erroresCometidos > maxErroresPermitidos)
@@ -171,8 +176,19 @@ public class Cauldron : MonoBehaviour
     public void ResetearCaldero()
     {
         ingredientesEnElLíquido.Clear();
-        erroresCometidos = 0;
         calderoDestruido = false;
+
+        maxErroresPermitidos = 2; 
+
+        if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
+        {
+            int nivel = SaveManager.Instance.datosActuales.nivelEstabilidad;
+            if (nivel == 1) maxErroresPermitidos = 3;
+            else if (nivel == 2) maxErroresPermitidos = 4;
+            else if (nivel == 3) maxErroresPermitidos = 5;
+            
+            erroresCometidos = SaveManager.Instance.datosActuales.erroresAcumulados;
+        }
         
         if (liquidoRenderer != null)
         {

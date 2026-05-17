@@ -120,8 +120,27 @@ public class BoardController : MonoBehaviour
         }
 
         int monedas = calcularMonedas(dificultadCalculada);
+        bool esClienteVIP = false;
+
+        if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
+        {
+            if (SaveManager.Instance.datosActuales.tieneImanEsencia)
+            {
+                if (Random.value <= 0.15f)
+                {
+                    esClienteVIP = true;
+                    monedas *= 2;
+                    Debug.Log("<color=yellow>[TIENDA]</color> ¡Imán de Esencia activado! Ha llegado un Cliente VIP.");
+                }
+            }
+        }
+
         recetaElegida.recompensaMonedas = monedas;
-        textoRecompensa.text = "+" + monedas;
+        if (esClienteVIP) {
+            textoRecompensa.text = "+" + monedas + " VIP";
+        } else {
+            textoRecompensa.text = "+" + monedas;
+        }
         textoNumCliente.text = "Cliente: #" + clientesAtendidosHoy.ToString("00");
 
         actualizarEstrellas(dificultadCalculada, colorEstrellas);
@@ -161,11 +180,23 @@ public class BoardController : MonoBehaviour
         AsignarNuevaMision();
     }
 
-    int calcularMonedas(int cantIngredientes) {
-        if(cantIngredientes == 2) return 2;
-        if(cantIngredientes == 3) return 3;
-        if(cantIngredientes >= 4) return 5;
-        return 1;
+    int calcularMonedas(int cantIngredientes) 
+    {
+        int monedasBase = 1;
+
+        if (cantIngredientes == 2) monedasBase = 2;
+        else if (cantIngredientes == 3) monedasBase = 3;
+        else if (cantIngredientes >= 4) monedasBase = 5;
+
+        if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
+        {
+            int nivelBono = SaveManager.Instance.datosActuales.nivelBonoMonedas;
+
+            if (nivelBono == 1)      monedasBase += 1;
+            else if (nivelBono == 2) monedasBase += 2;
+        }
+
+        return monedasBase;
     }
 
     void actualizarEstrellas(int cantIngredientes, Color colorElegido) {
