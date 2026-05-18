@@ -35,18 +35,58 @@ public class CatDialogManager : MonoBehaviour {
 
         if(contenedorDialogo != null) {
             contenedorDialogo.SetActive(false);
+        }
+
+        // Valores por defecto para el bucle de diálogos aleatorios
+        float retrasoAleatorioInicial = 20f; 
+        bool jugarSaludoInicial = true;
+
+        // Comprobamos el día actual mediante el SaveManager
+        if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null) {
+            int diaActual = SaveManager.Instance.datosActuales.diaActual;
+
+            // Verificamos si la jornada NO está en progreso mediante el GameManager
+            bool jornadaInactiva = GameManager.Instance != null && !GameManager.Instance.misionEnProgreso;
+
+            if (diaActual < 3) {
+                jugarSaludoInicial = false;         // Bloqueado el "Inicio" estándar en día 1 y 2
+                retrasoAleatorioInicial = 240f;     // 4 minutos expresados en segundos para los aleatorios
+
+                // ------
+                if (jornadaInactiva)
+                {
+                    if (diaActual == 1)
+                    {
+                        // "NuevaPartida" en el Inspector del gato
+                        DecirFrase("NuevaPartida"); 
+                        Debug.Log("<color=cyan>[GATO]</color> Activado diálogo introductorio de Nueva Partida (Día 1).");
+                    }
+                    else if (diaActual == 2)
+                    {
+                        // "SegundoDia" en el Inspector del gato
+                        DecirFrase("SegundoDia"); 
+                        Debug.Log("<color=cyan>[GATO]</color> Activado diálogo introductorio del Segundo Día (Día 2).");
+                    }
+                }
+            }
+            else {
+                Debug.Log($"<color=orange>[GATO]</color> Modo Normal Activo (Día {diaActual}).");
+            }
+        }
+
+        // Ejecutar saludo de Inicio estándar solo del día 3 en adelante
+        if (jugarSaludoInicial) {
             DecirFrase("Inicio");
         }
-        
-        // Lanza una frase aleatoria cada 60 segundos aproximadamente
-        InvokeRepeating("LanzarDialogoAleatorio", 20f, 60f);
+
+        // Registramos el bucle repetitivo usando el tiempo de retraso calculado
+        InvokeRepeating("LanzarDialogoAleatorio", retrasoAleatorioInicial, 60f);
     }
 
     public void DecirFrase(string categoria) {
         foreach (var grupo in baseDeDatos) {
             if (grupo.categoria.ToLower() == categoria.ToLower()) {
                 if (grupo.frasesYAudios.Length > 0) {
-                    // Selecciona un índice aleatorio del grupo
                     int indiceAleatorio = Random.Range(0, grupo.frasesYAudios.Length);
                     FraseConAudio seleccion = grupo.frasesYAudios[indiceAleatorio];
                     
@@ -65,34 +105,48 @@ public class CatDialogManager : MonoBehaviour {
     }
 
     IEnumerator MostrarTextoYSonido(FraseConAudio elemento) {
-        textoDialogo.text = ""; // Limpia el texto anterior
+        textoDialogo.text = elemento.textoFrase;
+        textoDialogo.maxVisibleCharacters = 0; 
         contenedorDialogo.SetActive(true);
 
-        float velocidadEscrituraDinamica = 0.05f; // Valor por defecto si no hay audio
+        float velocidadEscrituraDinamica = 0.05f; 
 
-        // Si hay un audio asignado, se reproduce y calculamos la velocidad exacta
         if (elemento.audioFrase != null && miAudioSource != null) {
             miAudioSource.clip = elemento.audioFrase;
             miAudioSource.Play();
 
-            // Evitamos división por cero si la frase está vacía por error
             if (elemento.textoFrase.Length > 0) {
-                velocidadEscrituraDinamica = elemento.audioFrase.length / elemento.textoFrase.Length;
+                velocidadEscrituraDinamica = (elemento.audioFrase.length / elemento.textoFrase.Length) / 2f;
             }
         }
 
-        // Efecto letra por letra sincronizado con la duración del audio
-        foreach (char letra in elemento.textoFrase.ToCharArray()) {
-            textoDialogo.text += letra;
-            yield return new WaitForSeconds(velocidadEscrituraDinamica);
+        textoDialogo.ForceMeshUpdate(); 
+        TMP_TextInfo textInfo = textoDialogo.textInfo;
+        int totalPaginas = textInfo.pageCount;
+
+        for (int p = 0; p < totalPaginas; p++) {
+            textoDialogo.pageToDisplay = p + 1; 
+
+            TMP_PageInfo paginaActual = textInfo.pageInfo[p];
+            int primerCaracter = paginaActual.firstCharacterIndex;
+            int ultimoCaracter = paginaActual.lastCharacterIndex;
+
+            textoDialogo.maxVisibleCharacters = primerCaracter;
+
+            for (int i = primerCaracter; i <= ultimoCaracter; i++) {
+                textoDialogo.maxVisibleCharacters++;
+                yield return new WaitForSeconds(velocidadEscrituraDinamica);
+            }
+
+            if (p < totalPaginas - 1) {
+                yield return new WaitForSeconds(0.5f); 
+            }
         }
 
-        // Si el audio aún se está reproduciendo por pequeños desfases de frames, esperamos a que termine
         if (miAudioSource.isPlaying) {
             yield return new WaitWhile(() => miAudioSource.isPlaying);
         }
 
-        // Espera extra con el bocadillo completo antes de cerrarlo
         yield return new WaitForSeconds(tiempoVisibleDespuesDeEscribir);
         contenedorDialogo.SetActive(false);
     }

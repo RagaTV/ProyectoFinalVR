@@ -76,6 +76,15 @@ public class Cauldron : MonoBehaviour
                 {
                     SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.errorIngrediente, transform.position, 1f);
                     if (!estaTemblando) StartCoroutine(EfectoTemblor());
+
+                    // ======================================================================
+                    // frase de Peligro
+                    CatDialogManager gatoManager = FindObjectOfType<CatDialogManager>();
+                    if (gatoManager != null)
+                    {
+                        gatoManager.DecirFrase("Peligro");
+                    }
+                    // ======================================================================
                 }
             }
         }

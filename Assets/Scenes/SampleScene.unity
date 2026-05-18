@@ -2575,7 +2575,7 @@ MonoBehaviour:
   m_fontSize: 10
   m_fontSizeBase: 10
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 6
   m_fontSizeMax: 10
   m_fontStyle: 0
@@ -2590,7 +2590,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 5
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -2649,9 +2649,6 @@ MonoBehaviour:
   baseDeDatos:
   - categoria: Inicio
     frasesYAudios:
-    - textoFrase: "Ya hac\xEDa falta que llegaras, humano. \xA1A darle que hay mucho
-        trabajo!"
-      audioFrase: {fileID: 8300000, guid: 0e05b4c0b5b967b4093a313ce332f38d, type: 3}
     - textoFrase: "Huele a que hoy nos va a ir muy bien con las propinas. \xA1Manos
         a la obra!"
       audioFrase: {fileID: 8300000, guid: 0f6bcc9ad95c5c64895469194a6ba082, type: 3}
@@ -2668,45 +2665,47 @@ MonoBehaviour:
     frasesYAudios:
     - textoFrase: "\xA1Oye, oye! \xA1Eso est\xE1 haciendo unos ruidos muy raros!
         \xA1Cuidado!"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 5ba44a40e6895ab46bed826cb9a0b96c, type: 3}
+    - textoFrase: "\xA1Creo que ese ingrediente no iba ah\xED!"
+      audioFrase: {fileID: 8300000, guid: 6cec79d1f83a0dc428ba99a2956eafe2, type: 3}
     - textoFrase: "\xA1Mu\xE9vete, mu\xE9vete! \xA1Eso va a saltar en cualquier momento!"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: e1dda1b65809c1547863709e003a4b4f, type: 3}
     - textoFrase: "\xA1Huele a quemado, humano!"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: fa444731997c2c846978443d535e2c3e, type: 3}
     - textoFrase: "\xA1Acu\xE9rdate que yo tengo siete vidas, pero t\xFA solo tienes
         una! \xA1Cuidado!"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: a83df6513643d7c4e99be2b77571255d, type: 3}
     - textoFrase: "\xA1Humano, el caldero est\xE1 haciendo 'glup glup' demasiado
         r\xE1pido!"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: b0f7c9c1b4e151345a7f11d548d89c8d, type: 3}
     - textoFrase: "\xA1No te distraigas justo ahora!"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 9afdc73ef777f4349ab2923499f94ad2, type: 3}
   - categoria: Aleatorio
     frasesYAudios:
     - textoFrase: "\xBFNo has visto mi rat\xF3n de juguete? Jurar\xEDa que lo dej\xE9
         por aqu\xED cerca..."
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 1b8bc139c8e2103468697edf735b13f9, type: 3}
     - textoFrase: "A veces pienso que yo deber\xEDa llevar las finanzas del negocio
         y t\xFA solo las mezclas."
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: ec5f0eb38bce4ae4e80a4eba7f29072f, type: 3}
     - textoFrase: "Si te sobra un poquito de pescado de los ingredientes... ya sabes
         d\xF3nde est\xE1 mi plato."
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 93303a17852a82a4d860ce0a99fde5ff, type: 3}
   - categoria: Consejos
     frasesYAudios:
     - textoFrase: "Si la descripci\xF3n de la pizarra es confusa, lo mejor es consultar
         el libro detalladamente."
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: eb84cc74cac19534d80010dc98b67254, type: 3}
     - textoFrase: "Antes de agregar cualquier cosa, aseg\xFArate de haber presionado
         el bot\xF3n de inicio de jornada."
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 07d72e58a0b0a3b4d801190bf867a6b2, type: 3}
     - textoFrase: "Una vez que la poci\xF3n est\xE9 lista en su frasco, col\xF3cala
         en la charola y presione el bot\xF3n de entrega para recibir una recompensa."
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: c97d38e6f05219e4bbe3020c013f5ba2, type: 3}
     - textoFrase: "No te precipites con los ingredientes ambiguos, una mala lectura
         arruinar\xE1 toda la poci\xF3n."
-      audioFrase: {fileID: 0}
-  - categoria: Nueva Partida
+      audioFrase: {fileID: 8300000, guid: 5581c3ad3fcd2c44a821d025f3f189cd, type: 3}
+  - categoria: NuevaPartida
     frasesYAudios:
     - textoFrase: "\xA1Hola, humano! Me da gusto verte. \xBFQu\xE9 te parece si comenzamos?
         A tu lado derecho tienes una pizarra donde aparecer\xE1 la receta que solicita
@@ -2724,12 +2723,12 @@ MonoBehaviour:
         todo puede explotar, aunque despu\xE9s podr\xE1s mejorar la estabilidad y
         equivocarte un poco m\xE1s.\r\nCuando te sientas listo, presiona el bot\xF3n
         negro para comenzar la jornada de hoy.\r"
-      audioFrase: {fileID: 0}
-  - categoria: Segundo dia
+      audioFrase: {fileID: 8300000, guid: 770b94c6d5f24244995e27b68308be79, type: 3}
+  - categoria: SegundoDia
     frasesYAudios:
     - textoFrase: "\xA1Wow, que gran d\xEDa! Recuerda, pulsar el bot\xF3n negro para
         iniciar una nueva jornada.\r"
-      audioFrase: {fileID: 0}
+      audioFrase: {fileID: 8300000, guid: 474360bb63974bc499c6b4d9564e3e5b, type: 3}
   tiempoVisibleDespuesDeEscribir: 2.5
   audioSourcePrefab: {fileID: 6627007569432020806, guid: 798037d6feec5c9478679a4c344e2006, type: 3}
 --- !u!4 &311765330 stripped
@@ -2758,7 +2757,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 6
+  MaxDistance: 5.5
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
