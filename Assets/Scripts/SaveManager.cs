@@ -46,4 +46,9 @@ public class SaveManager : MonoBehaviour
             Debug.Log("<color=cyan>[SAVE SYSTEM]</color> No hay guardado previo. Iniciando nueva partida desde el Día 1.");
         }
     }
+
+    public string ObtenerRutaArchivo()
+    {
+        return rutaArchivo;
+    }
 }
