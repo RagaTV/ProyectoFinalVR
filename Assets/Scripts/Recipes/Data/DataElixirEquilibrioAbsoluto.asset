@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataElixirEquilibrioAbsoluto
+  m_EditorClassIdentifier: 
+  nombrePocion: Elixir del Equilibrio Absoluto
+  colorFinal: {r: 0.69300866, g: 0.5566928, b: 0.8490566, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: 0fd3286fc84404341a2300d9bcfca6b0, type: 2}
+  - {fileID: 11400000, guid: f5ca6dec67729b7498da326c562f2193, type: 2}
+  - {fileID: 11400000, guid: 597a0af61934138458f5e76ac766c013, type: 2}
+  - {fileID: 11400000, guid: d309c5bf37cc6db46940a0b3b7f930d5, type: 2}
+  descripcionClara: "Margarita, Cal\xE9ndula, Cristales y Verbena."
+  descripcionAmbigua: Inocencia blanca del prado, flor solar naranja, claridad mineral
+    y fe verde.
+  descripcionConfusa: "Armonice la pureza simple con la esencia del calor, filtrada
+    a trav\xE9s de la verdad transparente y el aroma que limpia templos."
+  recompensaMonedas: 1
+  clasificacion: 2

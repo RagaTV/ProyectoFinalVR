@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataInfusionSolar
+  m_EditorClassIdentifier: 
+  nombrePocion: "Infusi\xF3n Solar"
+  colorFinal: {r: 1, g: 0.84313726, b: 0, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: f5ca6dec67729b7498da326c562f2193, type: 2}
+  - {fileID: 11400000, guid: 0fd3286fc84404341a2300d9bcfca6b0, type: 2}
+  descripcionClara: "Una Cal\xE9ndula y una Margarita"
+  descripcionAmbigua: Mezcla la flor del sol con la flor de los prados
+  descripcionConfusa: La luz dorada debe abrazar la inocencia blanca

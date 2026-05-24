@@ -1,0 +1,365 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections; 
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+
+public class GameManager : MonoBehaviour
+{
+    // Instancia estática para acceder desde otros scripts si es necesario
+    public static GameManager Instance { get; private set; }
+
+    [Header("Base de Datos de Alquimia")]
+    public List<RecipeData> todasLasRecetas; 
+    public RecipeData recetaObjetivoActual;
+
+    [Header("Configuración de Rendimiento")]
+    [SerializeField] private int targetFrameRate = 72;
+    [SerializeField] private bool disableVSync = true;
+    public GameObject monedaPrefab;
+    public Transform puntoAparicionPlato;
+    [Header("Control de Estados")]
+    public bool misionEnProgreso = false;
+    public bool recetaCompletada = false;
+
+    [Header("Transiciones de VR")]
+    public CanvasGroup fadeCanvasGroup; 
+    public TextMeshProUGUI textoFade;
+    [Header("Configuración de Vidas")]
+    public int vidasMaximasHoy = 2; // Guardamos el total del día
+    public int vidasActualesHoy;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            ConfigurarRendimiento();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        BuscarComponentesUI();
+    }
+
+    private void BuscarComponentesUI()
+    {
+        // Buscamos el Canvas por el nombre exacto que le pusiste
+        GameObject canvasObj = GameObject.Find("CanvasFade");
+        if (canvasObj != null)
+        {
+            fadeCanvasGroup = canvasObj.GetComponent<CanvasGroup>();
+            textoFade = canvasObj.GetComponentInChildren<TextMeshProUGUI>(true);
+            
+            // Nos aseguramos de que empiece 100% invisible para poder jugar
+            if (fadeCanvasGroup != null)
+            {
+                fadeCanvasGroup.alpha = 0f;
+            }
+        }
+
+        GameObject platoObj = GameObject.Find("SpawnPointCoin"); 
+        if (platoObj != null)
+        {
+            puntoAparicionPlato = platoObj.transform;
+        }
+    }
+    void Start()
+    {
+        SFXManager.Instance.PlayAmbientMusic(SFXManager.Instance.musicaAmbiente, 0.75f);
+
+        if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
+        {
+            dineroTotal = SaveManager.Instance.datosActuales.monedasTotales;
+            Debug.Log($"<color=green>[ECONOMÍA]</color> Billetera sincronizada con el guardado. Monedas iniciales: {dineroTotal}");
+        }
+    }
+
+    void Update()
+    {
+        foreach (var moneda in monedasEnEscena.ToList())
+        {
+            if (moneda != null && moneda.transform.position.y < 0.5f)
+            {
+                Coin scriptMoneda = moneda.GetComponent<Coin>();
+                if(scriptMoneda != null) SumarDinero(scriptMoneda.valorMoneda);
+
+                monedasEnEscena.Remove(moneda);
+                Destroy(moneda);
+                Debug.Log("<color=green>[ECONOMÍA]</color> Moneda recuperada automáticamente del suelo.");
+            }
+        }
+    }
+
+    void ConfigurarRendimiento()
+    {
+        // 1. Control de FPS
+        Application.targetFrameRate = targetFrameRate;
+
+        if (disableVSync)
+        {
+            QualitySettings.vSyncCount = 0;
+        }
+        Debug.Log($"Configuración aplicada: {targetFrameRate} FPS.");
+    }
+
+    public bool ValidarIngrediente(IngredientData ingredienteCayo, List<IngredientData> listaCaldero)
+    {
+        bool esParte = recetaObjetivoActual.ingredientesRequeridos.Contains(ingredienteCayo);
+
+        if (recetaCompletada)
+        {
+            Debug.Log($"<b><color=#FF0000>[ALQUIMIA]</color></b> ¡ERROR! La poción ya está lista. No puedes añadir <b>{ingredienteCayo.nombreIngrediente}</b> hasta atender al siguiente cliente.");
+            return false; 
+        }
+
+        if (!esParte)
+        {
+            // LOG DE ERROR: En rojo y negrita
+            Debug.Log($"<b><color=#FF0000>[ALQUIMIA]</color></b> ¡ERROR! El ingrediente <b>{ingredienteCayo.nombreIngrediente}</b> no pertenece a la receta <i>{recetaObjetivoActual.nombrePocion}</i>.");
+            return false; 
+        }
+
+        // 2. ¿Ya tenemos este ingrediente en el caldero? (Opcional, por si no quieres repetidos)
+        if (listaCaldero.Contains(ingredienteCayo))
+        {
+            Debug.Log($"<b><color=#FFFF00>[ALQUIMIA]</color></b> El ingrediente <b>{ingredienteCayo.nombreIngrediente}</b> ya está en el caldero. (Duplicado)");
+            return false;
+        }
+
+        // LOG DE ACIERTO: En verde
+        Debug.Log($"<b><color=#00FF00>[ALQUIMIA]</color></b> ¡BIEN! <b>{ingredienteCayo.nombreIngrediente}</b> añadido correctamente a la mezcla.");
+        
+        VerificarRecetaCompletada(listaCaldero, ingredienteCayo);
+        return true;
+    }
+
+    private void VerificarRecetaCompletada(List<IngredientData> listaCaldero, IngredientData ultimoIngrediente)
+    {
+        List<IngredientData> listaPrueba = new List<IngredientData>(listaCaldero);
+        listaPrueba.Add(ultimoIngrediente);
+
+        var requeridos = recetaObjetivoActual.ingredientesRequeridos.OrderBy(i => i.name);
+        var actuales = listaPrueba.OrderBy(i => i.name);
+
+        if (requeridos.SequenceEqual(actuales))
+        {
+            recetaCompletada = true;
+
+            string colorHex = ColorUtility.ToHtmlStringRGB(recetaObjetivoActual.colorFinal);
+            Debug.Log($"<b><color=#{colorHex}>[SISTEMA]</color></b> ¡POCIÓN FINALIZADA! Has creado <b>{recetaObjetivoActual.nombrePocion}</b>.");
+
+            BottleFiller filler = FindObjectOfType<BottleFiller>();
+            if (filler != null) 
+            {
+                filler.HabilitarLlenado();
+            }
+            else 
+            {
+                Debug.LogError("No se encontró el script BottleFiller en la escena.");
+            }
+
+            Cauldron caldero = FindObjectOfType<Cauldron>();
+            if (caldero != null)
+            {
+                caldero.CambiarColorFinal(recetaObjetivoActual.colorFinal);
+            }
+        }
+    }
+
+
+    [Header("Economía e Inventario")]
+    public int dineroTotal = 0;
+    public List<GameObject> monedasEnEscena = new List<GameObject>();
+
+    public IEnumerator SpawnMonedasConIntervalo(int cantidad)
+    {
+        for (int i = 0; i < cantidad; i++)
+        {
+            Vector3 desfase = new Vector3(Random.Range(-0.05f, 0.05f), 0.02f, Random.Range(-0.05f, 0.05f));
+            GameObject nuevaMoneda = Instantiate(monedaPrefab, puntoAparicionPlato.position + desfase, Quaternion.identity);
+            SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.recibirMonedas, puntoAparicionPlato.position, 1f);
+            monedasEnEscena.Add(nuevaMoneda);
+            
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    public void NotificarMonedaRecogida(GameObject moneda)
+    {
+        if (monedasEnEscena.Contains(moneda))
+        {
+            monedasEnEscena.Remove(moneda);
+            SFXManager.Instance.PlaySFX(SFXManager.Instance.agarrarObjeto, 0.5f);
+        }
+    }
+
+    public bool HayMonedasPendientes()
+    {
+        Debug.Log($"Monedas restantes en lista: {monedasEnEscena.Count}"); 
+        return monedasEnEscena.Count > 0;
+    }
+
+    public void SumarDinero(int cantidad)
+    {
+        dineroTotal += cantidad;
+        Debug.Log($"<b><color=#FFD700>[BILLETERA]</color></b> +{cantidad}. Total: {dineroTotal}");
+    }
+
+    public void restarDinero(int cantidad)
+    {
+        dineroTotal -= cantidad;
+        Debug.Log($"<b><color=#FFD700>[BILLETERA]</color></b> -{cantidad}. Total: {dineroTotal}");
+    }
+
+    public void ForzarFinDeJornada()
+    {
+        Debug.Log("<b><color=#8B0000>[GAME OVER]</color></b> Jornada abortada. Cerrando laboratorio...");
+        
+        misionEnProgreso = false;
+
+        DayNightCycle reloj = FindObjectOfType<DayNightCycle>();
+        if (reloj != null)
+        {
+            reloj.jornadaActiva = false; 
+        }
+
+        if (SFXManager.Instance != null && SFXManager.Instance.musicaPerder != null)
+        {
+            SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaPerder, 0.6f);
+        }
+
+        StartCoroutine(TransicionDerrota());
+    }
+
+    private IEnumerator TransicionDerrota()
+    {
+        
+        if (textoFade != null)
+        {
+            textoFade.text = "¡El caldero no soportó la mezcla!\nJornada arruinada...";
+            textoFade.color = new Color(1f, 0.4f, 0.4f); // Un tono rojizo para el error
+        }
+
+        float tiempoFade = 2f;
+        float t = 0;
+        
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.alpha = 0f; 
+            
+            while (t < tiempoFade)
+            {
+                t += Time.deltaTime;
+                fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t / tiempoFade);
+                yield return null;
+            }
+        }
+
+        yield return new WaitForSeconds(10f);
+
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.DetenerTodoElAudio();
+        }
+
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.CargarProgreso(); 
+            dineroTotal = SaveManager.Instance.datosActuales.monedasTotales; 
+        }
+
+        Debug.Log("<color=orange>[SISTEMA]</color> Recargando día anterior. No se guardó el progreso.");
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public IEnumerator TransicionNuevoDia()
+    {
+        if (textoFade != null)
+        {
+            int monedasDeHoy = 0;
+            int diaTerminado = 1;
+
+            if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
+            {
+                monedasDeHoy = dineroTotal - SaveManager.Instance.datosActuales.monedasTotales;
+                diaTerminado = SaveManager.Instance.datosActuales.diaActual;
+            }
+
+            textoFade.text = $"Fin de Jornada: Día {diaTerminado}\nGanaste +{monedasDeHoy} monedas";
+            textoFade.color = Color.white; 
+        }
+
+        float tiempoFade = 2f;
+        float t = 0;
+        
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.alpha = 0f; 
+            while (t < tiempoFade)
+            {
+                t += Time.deltaTime;
+                fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t / tiempoFade);
+                yield return null;
+            }
+        }
+
+        yield return new WaitForSeconds(10f);
+
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.DetenerTodoElAudio();
+        }
+
+        if (SaveManager.Instance != null)
+        {
+            Debug.Log("<color=green>[SISTEMA]</color> Guardando progreso de la jornada...");
+            
+            SaveManager.Instance.datosActuales.monedasTotales = dineroTotal;
+            SaveManager.Instance.datosActuales.diaActual++; 
+            
+            SaveManager.Instance.GuardarProgreso(); 
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ReiniciarJornadaPorEmergencia()
+    {
+        Debug.Log("<color=yellow>[SISTEMA]</color> Botón de emergencia presionado. Abortando día actual...");
+
+        misionEnProgreso = false;
+
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.CargarProgreso(); 
+            dineroTotal = SaveManager.Instance.datosActuales.monedasTotales;
+        }
+
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.DetenerTodoElAudio();
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+}

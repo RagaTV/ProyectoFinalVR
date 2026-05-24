@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataAntidotoDeLasProfundidades
+  m_EditorClassIdentifier: 
+  nombrePocion: "Ant\xEDdoto de las Profundidades"
+  colorFinal: {r: 0.11921501, g: 0.32016742, b: 0.4433962, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: d309c5bf37cc6db46940a0b3b7f930d5, type: 2}
+  - {fileID: 11400000, guid: ad468b5759f838048935ac5c377786af, type: 2}
+  - {fileID: 11400000, guid: 0fd3286fc84404341a2300d9bcfca6b0, type: 2}
+  descripcionClara: Usa Verbena, Pejesapo y Margarita.
+  descripcionAmbigua: "Hierba que aleja malos esp\xEDritus, la luz abisal y la flor
+    m\xE1s pura."
+  descripcionConfusa: "La fe verde del altar y la linterna que gu\xEDa en lo oscuro
+    se unen a la base estabilizadora del prado."
+  recompensaMonedas: 1
+  clasificacion: 1

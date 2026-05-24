@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
+  m_Name: DataRosa
+  m_EditorClassIdentifier: 
+  nombreIngrediente: Rosa Espinosa
+  tipo: 0
+  colorPrincipal: {r: 0.60784316, g: 0.14117648, b: 0.14509805, a: 1}
+  iconoIngrediente: {fileID: -4735517352586821549, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
+  descripcionParaElJugador: "Representa la dualidad: la belleza del p\xE9talo y el
+    dolor de la espina"
+  etiquetasClave: Amor, Belleza, Aroma, Punzante

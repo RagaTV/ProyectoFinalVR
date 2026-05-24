@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a377358cf4120f4098ffbbd655112ed, type: 3}
+  m_Name: DataHongoNaranja
+  m_EditorClassIdentifier: 
+  nombreIngrediente: Hongo de Corteza
+  tipo: 1
+  colorPrincipal: {r: 0.9490197, g: 0.4901961, b: 0.3647059, a: 1}
+  iconoIngrediente: {fileID: -190988711052720213, guid: 0e7bb2ec4cdf7c3438373548012043c5, type: 3}
+  descripcionParaElJugador: "Crece en los \xE1rboles ca\xEDdos. Su color advierte
+    que est\xE1 absorbiendo la energ\xEDa del bosque"
+  etiquetasClave: "Brillo, Madera, Putrefacci\xF3n, Naranja"

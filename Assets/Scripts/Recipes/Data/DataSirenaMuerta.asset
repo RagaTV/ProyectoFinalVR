@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataSirenaMuerta
+  m_EditorClassIdentifier: 
+  nombrePocion: "L\xE1grimas de la Sirena Muerta"
+  colorFinal: {r: 0, g: 0, b: 0.5019608, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: c286d0c2f882292439a0cde4368b320e, type: 2}
+  - {fileID: 11400000, guid: 5d007d1ac7c305341bee9072259b167a, type: 2}
+  - {fileID: 11400000, guid: f6f4ea5ff8e568c4fa11a1eb95b68f35, type: 2}
+  - {fileID: 11400000, guid: 5af919fb099857449a3623171437dd07, type: 2}
+  descripcionClara: "Esqueleto Pescado, Diente Tibur\xF3n, Amatista y Rosa"
+  descripcionAmbigua: Huesos de mar, colmillo de mar, joya violeta y una flor
+  descripcionConfusa: "Lo que qued\xF3 de la marea, su mordida, su gema favorita
+    y su \xFAltimo suspiro floral"
+  recompensaMonedas: 1
+  clasificacion: 2

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataFuegoDeLaPutrefaccion
+  m_EditorClassIdentifier: 
+  nombrePocion: "Fuego de la Putrefacci\xF3n"
+  colorFinal: {r: 1, g: 0.56423336, b: 0, a: 1}
+  ingredientesRequeridos: []
+  descripcionClara: "Hongo Rojo, Hongo Naranja y Cal\xE9ndula."
+  descripcionAmbigua: "Seta reactiva carmes\xED, el hongo de madera ca\xEDda y la
+    flor del sol."
+  descripcionConfusa: "La pasi\xF3n del peligro rojo se alimenta de lo que se pudre
+    en la corteza, bajo el calor del primer rayo solar."
+  recompensaMonedas: 1
+  clasificacion: 1

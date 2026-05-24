@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b223e8197e3624bb3160a17dc7b9f1, type: 3}
+  m_Name: DataPantanoNegro
+  m_EditorClassIdentifier: 
+  nombrePocion: Sopa del Pantano Negro
+  colorFinal: {r: 0.101960786, g: 0.2, b: 0, a: 1}
+  ingredientesRequeridos:
+  - {fileID: 11400000, guid: ad468b5759f838048935ac5c377786af, type: 2}
+  - {fileID: 11400000, guid: 9e4ead625246810419d7f535823844f4, type: 2}
+  - {fileID: 11400000, guid: b5a45b2446b99bd4e957f08c4b673af3, type: 2}
+  descripcionClara: Pejesapo, Rana y Rana Venenosa
+  descripcionAmbigua: El que brilla en el agua y dos tipos de anfibios
+  descripcionConfusa: 'La trinidad del lodo: luz abisal, salto simple y sudor mortal'
+  recompensaMonedas: 1
+  clasificacion: 1
