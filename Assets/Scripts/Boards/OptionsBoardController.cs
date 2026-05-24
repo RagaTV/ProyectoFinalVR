@@ -30,8 +30,10 @@ public class OptionsBoardController : MonoBehaviour
         if (cameraOffset != null)
         {
             alturaOffset += 0.05f; 
+            alturaOffset = Mathf.Clamp(alturaOffset, -0.5f, 1.5f); 
+            
             AplicarAltura();
-            SFXManager.Instance.PlaySFX(SFXManager.Instance.aciertoReceta, 0.5f); // Sonido de click
+            SFXManager.Instance.PlaySFX(SFXManager.Instance.aciertoReceta, 0.5f); 
         }
     }
 
@@ -40,6 +42,8 @@ public class OptionsBoardController : MonoBehaviour
         if (cameraOffset != null)
         {
             alturaOffset -= 0.05f; 
+            alturaOffset = Mathf.Clamp(alturaOffset, -0.5f, 1.5f); 
+            
             AplicarAltura();
             SFXManager.Instance.PlaySFX(SFXManager.Instance.aciertoReceta, 0.5f);
         }
@@ -50,6 +54,7 @@ public class OptionsBoardController : MonoBehaviour
         Vector3 pos = cameraOffset.localPosition;
         pos.y = alturaOffset;
         cameraOffset.localPosition = pos;
+        Debug.Log("<color=cyan>[SISTEMA]</color> Altura ajustada a: " + alturaOffset.ToString("F2") + " metros.");
         
         PlayerPrefs.SetFloat("AjusteAltura", alturaOffset);
         PlayerPrefs.Save();

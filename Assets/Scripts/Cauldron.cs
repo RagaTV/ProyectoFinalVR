@@ -19,9 +19,14 @@ public class Cauldron : MonoBehaviour
     private bool estaTemblando = false;
     [Header("Efectos Visuales")]
     public GameObject prefabExplosionVFX;
+    private Color colorInicialLíquido;
 
     void Start()
     {
+        if (liquidoRenderer != null) {
+            colorInicialLíquido = liquidoRenderer.material.color; 
+        }
+
         SFXManager.Instance.PlayCalderoLoop(transform.position, 0.4f);
         ResetearCaldero();
     }
@@ -203,7 +208,7 @@ public class Cauldron : MonoBehaviour
         if (liquidoRenderer != null)
         {
             liquidoRenderer.gameObject.SetActive(true);
-            liquidoRenderer.material.color = new Color(0.5f, 0f, 0.5f, 0.8f);
+            liquidoRenderer.material.color = colorInicialLíquido;
         }
     }
 }
