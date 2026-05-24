@@ -118,7 +118,9 @@ public class ShopBoardController : MonoBehaviour
         Cauldron caldero = FindObjectOfType<Cauldron>();
         if (caldero != null)
         {
-            textoStatusCaldero.text = $"ESTADO DEL CALDERO\n\t-Errores: {datos.erroresAcumulados} / {caldero.maxErroresPermitidos}";
+            textoStatusCaldero.text = $"ESTADO DEL LABORATORIO\n" +
+                                      $"\t- Monedas Totales: {datos.monedasTotales}\n" +
+                                      $"\t- Errores del Caldero: {datos.erroresAcumulados} / {caldero.maxErroresPermitidos}";
             textoStatusCaldero.color = (datos.erroresAcumulados == 0) ? Color.green : Color.red;
 
             if (datos.erroresAcumulados == 0) {
