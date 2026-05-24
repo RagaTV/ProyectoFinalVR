@@ -137,4 +137,12 @@ public class SFXManager : MonoBehaviour
         }
         if (calderoAmbientalSource.isPlaying) calderoAmbientalSource.Stop();
     }
+
+    public void DetenerMusicaAmbiente()
+    {
+        if (musicaAmbientalSource != null && musicaAmbientalSource.isPlaying)
+        {
+            musicaAmbientalSource.Stop();
+        }
+    }
 }
