@@ -150,4 +150,19 @@ public class CatDialogManager : MonoBehaviour {
         yield return new WaitForSeconds(tiempoVisibleDespuesDeEscribir);
         contenedorDialogo.SetActive(false);
     }
+
+    public void DetenerDialogoActivo() 
+    {
+        StopAllCoroutines();
+        
+        if (miAudioSource != null && miAudioSource.isPlaying) {
+            miAudioSource.Stop(); 
+        }
+        
+        if (contenedorDialogo != null) {
+            contenedorDialogo.SetActive(false);
+        }
+        
+        Debug.Log("<color=yellow>[GATO]</color> Diálogo interrumpido por el jugador.");
+    }
 }

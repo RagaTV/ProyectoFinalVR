@@ -4,17 +4,16 @@ public class DayNightCycle : MonoBehaviour
 {
     [Header("Configuración de Tiempo")]
     public bool jornadaActiva = false;
-    public float segundosRealesPorDia = 600f; // Cuánto dura la jornada (ej. 2 min)
+    public float segundosRealesPorDia = 600f; 
     [Header("Luces del Proyecto")]
-    [SerializeField] private Light sunLight;          // Tu Directional Light
-    [SerializeField] public Light dayPointLight;    // El DayPointLight 
+    [SerializeField] private Light sunLight;  
+    [SerializeField] public Light dayPointLight;    
     [Header("Registro de Datos (Lectura)")]
     public int diaActual = 1;
     public string horaActualTexto;
-    public float progresoJornada; // De 0 a 1
-
-    private float horaInicio = 10f; // 10 AM
-    private float horaFin = 24f;    // 12 AM (Medianoche)
+    public float progresoJornada; 
+    private float horaInicio = 10f; 
+    private float horaFin = 24f;
     private float tiempoTranscurrido;
 
     void Start()
@@ -49,7 +48,18 @@ public class DayNightCycle : MonoBehaviour
         tiempoTranscurrido = 0f;
         progresoJornada = 0f;
         jornadaActiva = true;
-        Debug.Log("<color=cyan>[TIEMPO]</color> ¡La jornada del día " + diaActual + " ha comenzado!");
+
+        Cauldron caldero = FindObjectOfType<Cauldron>();
+        if (caldero != null) {
+            caldero.ResetearCaldero(); 
+        }
+
+        CatDialogManager gato = FindObjectOfType<CatDialogManager>();
+        if (gato != null) {
+            gato.DetenerDialogoActivo();
+        }
+
+        Debug.Log("<color=cyan>[TIEMPO]</color> ¡La jornada ha comenzado!");
     }
 
     void CalcularReloj()

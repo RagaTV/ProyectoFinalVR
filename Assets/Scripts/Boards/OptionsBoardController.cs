@@ -138,6 +138,7 @@ public class OptionsBoardController : MonoBehaviour
     {
  
         Debug.Log("<color=cyan>[SISTEMA]</color> Volviendo al Menú Principal...");
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void CargarAjustes()

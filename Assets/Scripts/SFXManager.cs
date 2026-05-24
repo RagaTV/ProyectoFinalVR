@@ -30,7 +30,8 @@ public class SFXManager : MonoBehaviour
 
     private AudioSource[] audioPool;
     private int currentPoolIndex = 0;
-    private AudioSource calderoAmbientalSource; // Source especial para el sonido infinito del caldero
+    private AudioSource calderoAmbientalSource; 
+    private AudioSource musicaAmbientalSource;
 
     private void Awake()
     {
@@ -55,8 +56,8 @@ public class SFXManager : MonoBehaviour
             audioPool[i] = nuevoSource;
         }
 
-        // Creamos un Source extra exclusivo para el caldero para que no se interrumpa con los clics
         calderoAmbientalSource = Instantiate(audioSourcePrefab, transform);
+        musicaAmbientalSource = Instantiate(audioSourcePrefab, transform);
     }
 
     public void PlaySFX(AudioClip clip, float volumen = 1f, bool loop = false)
@@ -121,13 +122,11 @@ public class SFXManager : MonoBehaviour
     public void PlayAmbientMusic(AudioClip clip, float volumen = 0.5f)
     {
         if (clip == null) return;
-        
-        AudioSource musicSource = audioPool[0]; 
-        musicSource.clip = clip;
-        musicSource.volume = volumen;
-        musicSource.spatialBlend = 0f;
-        musicSource.loop = true;
-        musicSource.Play();
+        musicaAmbientalSource.clip = clip;
+        musicaAmbientalSource.volume = volumen;
+        musicaAmbientalSource.spatialBlend = 0f;
+        musicaAmbientalSource.loop = true;
+        musicaAmbientalSource.Play();
     }
 
     public void DetenerTodoElAudio()
@@ -136,9 +135,6 @@ public class SFXManager : MonoBehaviour
         {
             source.Stop();
         }
-        if (calderoAmbientalSource.isPlaying)
-        {
-            calderoAmbientalSource.Stop();
-        }
+        if (calderoAmbientalSource.isPlaying) calderoAmbientalSource.Stop();
     }
 }
