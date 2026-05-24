@@ -16,7 +16,7 @@ public class StartDayButton : MonoBehaviour
 
         if (SFXManager.Instance != null)
         {
-            SFXManager.Instance.PlayBotonUI(0.6f);
+            SFXManager.Instance.PlayBotonUI(0.5f);
         }
 
         if (dayNightCycle != null)

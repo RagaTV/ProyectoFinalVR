@@ -20,15 +20,11 @@ public class CatDialogManager : MonoBehaviour {
     [Header("Configuracion Visual")]
     public TextMeshProUGUI textoDialogo; 
     public GameObject contenedorDialogo; 
-
     [Header("Base de Datos de Frases")]
     public DialogoGato[] baseDeDatos;
-
     [Header("Ajustes de Efecto")]
     public float tiempoVisibleDespuesDeEscribir = 2.5f;
-
     private AudioSource miAudioSource;
-    [SerializeField] private AudioSource audioSourcePrefab;
 
     void Start() {
         miAudioSource = GetComponent<AudioSource>();
@@ -37,33 +33,30 @@ public class CatDialogManager : MonoBehaviour {
             contenedorDialogo.SetActive(false);
         }
 
-        // Valores por defecto para el bucle de diálogos aleatorios
         float retrasoAleatorioInicial = 20f; 
         bool jugarSaludoInicial = true;
 
-        // Comprobamos el día actual mediante el SaveManager
         if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null) {
             int diaActual = SaveManager.Instance.datosActuales.diaActual;
 
-            // Verificamos si la jornada NO está en progreso mediante el GameManager
             bool jornadaInactiva = GameManager.Instance != null && !GameManager.Instance.misionEnProgreso;
 
             if (diaActual < 3) {
-                jugarSaludoInicial = false;         // Bloqueado el "Inicio" estándar en día 1 y 2
-                retrasoAleatorioInicial = 240f;     // 4 minutos expresados en segundos para los aleatorios
+                jugarSaludoInicial = false; 
+                retrasoAleatorioInicial = 240f;
 
                 // ------
                 if (jornadaInactiva)
                 {
                     if (diaActual == 1)
                     {
-                        // "NuevaPartida" en el Inspector del gato
+                        
                         DecirFrase("NuevaPartida"); 
                         Debug.Log("<color=cyan>[GATO]</color> Activado diálogo introductorio de Nueva Partida (Día 1).");
                     }
                     else if (diaActual == 2)
                     {
-                        // "SegundoDia" en el Inspector del gato
+                        
                         DecirFrase("SegundoDia"); 
                         Debug.Log("<color=cyan>[GATO]</color> Activado diálogo introductorio del Segundo Día (Día 2).");
                     }
@@ -74,13 +67,12 @@ public class CatDialogManager : MonoBehaviour {
             }
         }
 
-        // Ejecutar saludo de Inicio estándar solo del día 3 en adelante
         if (jugarSaludoInicial) {
             DecirFrase("Inicio");
         }
 
-        // Registramos el bucle repetitivo usando el tiempo de retraso calculado
         InvokeRepeating("LanzarDialogoAleatorio", retrasoAleatorioInicial, 60f);
+        StartCoroutine(BucleMaullidosAleatorios());
     }
 
     public void DecirFrase(string categoria) {
@@ -164,5 +156,32 @@ public class CatDialogManager : MonoBehaviour {
         }
         
         Debug.Log("<color=yellow>[GATO]</color> Diálogo interrumpido por el jugador.");
+    }
+
+    IEnumerator BucleMaullidosAleatorios()
+    {
+        yield return new WaitForSeconds(15f);
+
+        while (true)
+        {
+            float tiempoEsperaAleatorio = Random.Range(30f, 75f);
+            yield return new WaitForSeconds(tiempoEsperaAleatorio);
+
+            if (SFXManager.Instance == null || SFXManager.Instance.maullidoGato == null) 
+                continue;
+
+            bool esDobleMaullido = Random.value > 0.5f;
+
+            SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.maullidoGato, transform.position, 0.6f);
+            Debug.Log("<color=orange>[GATO]</color> *Miau* ambiental.");
+
+            if (esDobleMaullido)
+            {
+                yield return new WaitForSeconds(0.5f);
+
+                SFXManager.Instance.PlaySFXAtPosition(SFXManager.Instance.maullidoGato, transform.position, 0.5f);
+                Debug.Log("<color=orange>[GATO]</color> *Miau miau* ¡Soltó el doble maullido consecutivo!");
+            }
+        }
     }
 }

@@ -74,7 +74,7 @@ public class SFXManager : MonoBehaviour
         currentPoolIndex = (currentPoolIndex + 1) % poolSize;
     }
 
-    public void PlayBotonUI(float volumen = 0.5f)
+    public void PlayBotonUI(float volumen = 0.4f)
     {
         if (sonidoBotonUI == null) return;
 

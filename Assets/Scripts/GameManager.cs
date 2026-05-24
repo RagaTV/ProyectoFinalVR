@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        SFXManager.Instance.PlaySFX(SFXManager.Instance.musicaAmbiente, 0.75f, true);
+        SFXManager.Instance.PlayAmbientMusic(SFXManager.Instance.musicaAmbiente, 0.75f);
 
         if (SaveManager.Instance != null && SaveManager.Instance.datosActuales != null)
         {
