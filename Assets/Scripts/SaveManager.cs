@@ -20,7 +20,30 @@ public class SaveManager : MonoBehaviour
 
         rutaArchivo = Application.persistentDataPath + "/ProgresoAlquimia.json";
         
+        // Al entrar al juego simplemente cargamos lo que haya (Día 1 si es nuevo, o el día guardado)
         CargarProgreso(); 
+    }
+
+    public void EliminarProgresoExistente()
+    {
+        // 1. Borrado físico absoluto en el disco
+        if (File.Exists(rutaArchivo))
+        {
+            File.Delete(rutaArchivo);
+            Debug.Log("<color=red>[SAVE SYSTEM]</color> JSON borrado físicamente del disco.");
+        }
+
+        // 2. LIMPIEZA INMEDIATA DE LA RAM: Forzamos datos limpios en la variable activa
+        datosActuales = new DatosGuardado();
+        datosActuales.diaActual = 1;
+        datosActuales.monedasTotales = 0;
+        datosActuales.erroresAcumulados = 0;
+
+        // 3. Escribimos el archivo en blanco de inmediato
+        string contenidoJson = JsonUtility.ToJson(datosActuales, true);
+        File.WriteAllText(rutaArchivo, contenidoJson);
+
+        Debug.Log("<color=cyan>[SAVE SYSTEM]</color> RAM y disco sincronizados en el Día 1.");
     }
 
     public void GuardarProgreso()

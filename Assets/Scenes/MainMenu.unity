@@ -2688,6 +2688,7 @@ RectTransform:
   - {fileID: 1633424236}
   - {fileID: 1832786521}
   - {fileID: 2124415047}
+  - {fileID: 1579239471}
   m_Father: {fileID: 841161517}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2843,7 +2844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5039746427044021643, guid: 4d62a072e6cbc7743842ef888fb693ea, type: 3}
       propertyPath: m_Name
-      value: UpgradesBoard
+      value: MenuInicioBoard
       objectReference: {fileID: 0}
     - target: {fileID: 5039746427044021643, guid: 4d62a072e6cbc7743842ef888fb693ea, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3730,7 +3731,6 @@ RectTransform:
   m_LocalScale: {x: 0.0116, y: 0.0054, z: 1}
   m_Children:
   - {fileID: 498657925}
-  - {fileID: 1579239471}
   m_Father: {fileID: 598237098}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -4719,6 +4719,9 @@ MonoBehaviour:
   nombreEscenaJuego: MainLevel
   textoBotonContinuar: {fileID: 490812854}
   componenteBotonContinuar: {fileID: 2124415048}
+  tamanoLetraConDatos: 3.5
+  tamanoLetraSinDatos: 3.5
+  colorDesactivado: {r: 0.5, g: 0.5, b: 0.5, a: 0.6}
 --- !u!4 &1024189508
 Transform:
   m_ObjectHideFlags: 0
@@ -7166,8 +7169,8 @@ RectTransform:
   m_LocalScale: {x: 1.0001429, y: 0.999985, z: 1}
   m_Children:
   - {fileID: 265358688}
-  m_Father: {fileID: 841161517}
-  m_RootOrder: 1
+  m_Father: {fileID: 498657925}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7220,7 +7223,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1024189507}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: SalirDelJuego
+        m_MethodName: SeleccionarSalir
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9323,7 +9326,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1024189507}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: NuevaPartida
+        m_MethodName: SeleccionarNuevaPartida
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10808,7 +10811,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1024189507}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: ContinuarJornada
+        m_MethodName: SeleccionarContinuarJornada
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
