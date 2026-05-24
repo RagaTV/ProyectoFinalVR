@@ -77,7 +77,6 @@ public class ShopBoardController : MonoBehaviour
 
     public void ActualizarInterfazTienda()
     {
-        // === MENSAJES DE DIAGNÓSTICO ===
         if (SaveManager.Instance == null) {
             Debug.LogError("<color=red>[ERROR CRÍTICO]</color> El SaveManager no existe en la escena. ¡Por eso no cambian los textos!");
             return;
@@ -86,39 +85,48 @@ public class ShopBoardController : MonoBehaviour
             Debug.LogWarning("<color=orange>[ADVERTENCIA]</color> SaveManager está en la escena, pero datosActuales está vacío.");
             return;
         }
-        // ===============================
 
         var datos = SaveManager.Instance.datosActuales;
 
+
         if (datos.nivelEstabilidad >= 3) {
             textoEstabilidad.text = "- Estabilidad: MÁX (Nivel 3)";
+            textoEstabilidad.color = Color.yellow;
         } else {
             int proximoCosto = costosEstabilidad[datos.nivelEstabilidad];
             textoEstabilidad.text = $"- Estabilidad Caldero (Niv {datos.nivelEstabilidad})\n\t[ Coste: {proximoCosto} Monedas ]";
+            textoEstabilidad.color = (datos.monedasTotales >= proximoCosto) ? Color.white : Color.gray;
         }
 
         if (datos.nivelBonoMonedas >= 2) {
             textoBonoComercio.text = "- Bono Comercio: MÁX (Nivel 2)";
+            textoBonoComercio.color = Color.yellow;
         } else {
             int proximoCosto = costosBono[datos.nivelBonoMonedas];
             textoBonoComercio.text = $"- Bono Comercio (Niv {datos.nivelBonoMonedas})\n\t[ Coste: {proximoCosto} Monedas ]";
+            textoBonoComercio.color = (datos.monedasTotales >= proximoCosto) ? Color.white : Color.gray;
         }
 
         if (datos.tieneImanEsencia) {
             textoImanEsencia.text = "- Imán de Esencia: ADQUIRIDO";
+            textoImanEsencia.color = Color.yellow;
         } else {
             textoImanEsencia.text = $"- Imán de Esencia (VIP)\n\t[ Coste: {costoImanEsencia} Monedas ]";
+            textoImanEsencia.color = (datos.monedasTotales >= costoImanEsencia) ? Color.white : Color.gray;
         }
 
         Cauldron caldero = FindObjectOfType<Cauldron>();
         if (caldero != null)
         {
             textoStatusCaldero.text = $"ESTADO DEL CALDERO\n\t-Errores: {datos.erroresAcumulados} / {caldero.maxErroresPermitidos}";
-            
+            textoStatusCaldero.color = (datos.erroresAcumulados == 0) ? Color.green : Color.red;
+
             if (datos.erroresAcumulados == 0) {
                 textoBorrador.text = "- Caldero Limpio\n\tNo requiere reparación";
+                textoBorrador.color = Color.green;
             } else {
                 textoBorrador.text = $"- Remover Errores\n\t[ Coste: {costoBorrador} Monedas ]";
+                textoBorrador.color = (datos.monedasTotales >= costoBorrador) ? Color.white : Color.gray;
             }
         }
     }
@@ -137,9 +145,6 @@ public class ShopBoardController : MonoBehaviour
         return false; 
     }
 
-    // ==========================================
-    // FUNCIONES DE BOTONES CON CHIVATOS DE VR
-    // ==========================================
 
     public void ComprarEstabilidad()
     {
@@ -155,7 +160,7 @@ public class ShopBoardController : MonoBehaviour
             GameManager.Instance.restarDinero(coste);
             datos.nivelEstabilidad++;
             datos.monedasTotales = GameManager.Instance.dineroTotal;
-            SaveManager.Instance.GuardarProgreso();
+            //SaveManager.Instance.GuardarProgreso();
 
             Cauldron caldero = FindObjectOfType<Cauldron>();
             if (caldero != null) caldero.ResetearCaldero();
@@ -185,7 +190,7 @@ public class ShopBoardController : MonoBehaviour
             GameManager.Instance.restarDinero(costoBorrador);
             datos.erroresAcumulados = 0;
             datos.monedasTotales = GameManager.Instance.dineroTotal;
-            SaveManager.Instance.GuardarProgreso();
+            //SaveManager.Instance.GuardarProgreso();
 
             Cauldron caldero = FindObjectOfType<Cauldron>();
             if (caldero != null) caldero.ResetearCaldero();
@@ -213,7 +218,7 @@ public class ShopBoardController : MonoBehaviour
             GameManager.Instance.restarDinero(coste);
             datos.nivelBonoMonedas++;
             datos.monedasTotales = GameManager.Instance.dineroTotal;
-            SaveManager.Instance.GuardarProgreso();
+            //SaveManager.Instance.GuardarProgreso();
 
             SFXManager.Instance.PlaySFX(SFXManager.Instance.aciertoReceta, 1f);
             ActualizarInterfazTienda();
@@ -237,7 +242,7 @@ public class ShopBoardController : MonoBehaviour
             GameManager.Instance.restarDinero(costoImanEsencia);
             datos.tieneImanEsencia = true;
             datos.monedasTotales = GameManager.Instance.dineroTotal;
-            SaveManager.Instance.GuardarProgreso();
+            //SaveManager.Instance.GuardarProgreso();
 
             SFXManager.Instance.PlaySFX(SFXManager.Instance.aciertoReceta, 1f);
             ActualizarInterfazTienda();

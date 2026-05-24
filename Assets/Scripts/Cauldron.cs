@@ -23,6 +23,7 @@ public class Cauldron : MonoBehaviour
     void Start()
     {
         SFXManager.Instance.PlayCalderoLoop(transform.position, 0.4f);
+        ResetearCaldero();
     }
 
     private void OnTriggerEnter(Collider other)
